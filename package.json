@@ -1,0 +1,30 @@
+{
+  "name": "@searchtap/search-client",
+  "version": "1.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack --mode=production",
+    "test": "tsc && NODE_ENV=test ./node_modules/mocha/bin/_mocha --full-trace --require ts-node/register --exit ./tests/*/*.spec.ts"
+  },
+  "author": "tech@searchtap.io",
+  "files": [
+    "./lib"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/node": "^10.5.1",
+    "awesome-typescript-loader": "^5.2.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "mocha-typescript": "^1.1.16",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.15.0",
+    "webpack-cli": "^3.0.8"
+  }
+}

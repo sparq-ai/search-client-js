@@ -1,1 +1,2 @@
-# search-client-js
+# SearchTap Search Client
+
