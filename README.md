@@ -20,7 +20,8 @@ Use following methods to install the package
 
 ### Create a New Client
 
-```
+To begin, you will need to create a new client. In order to do this you will need your Application ID and API Key. You can find both on your Algolia account.
+
 var searchClient = new SearchClient(<app-id>, <search-token>);
 
 var result = searhClient
