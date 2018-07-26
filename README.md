@@ -1,16 +1,24 @@
 # SearchTap Search Client
 
-Search Client is a light weight search-only client to be used in applications which require search access to their SearchTap data and do not require full blown client [`@searchtap/client`]()
+## About
+
+Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client [`@searchtap/client`]()
+
+- The Search Client library makes it easy to send requests and retrieve search results from the server for you.
+- The package supports the library and handles     so that you can focus on .
 
 ## Installation
 
-Use following methods to install the package
+You can use the following methods to install the package
 
-### Yarn or NPM
+### NPM or Yarn
+
+- `npm i --save @searchtap/searchclient`
+
+or
 
 - `yarn add @searchtap/searchclient`
 
-- `npm i --save @searchtap/searchclient`
 
 ### Browser 
 
@@ -20,12 +28,18 @@ Use following methods to install the package
 
 ### Create a New Client
 
-To initiate, you will have to create a new client which would require an Application ID and search token (API Key). You can find both on your SearchTap account.
+To initiate, you will have to create a new client which would require an Application ID and search token (API Key). You can find both on your SearchTap account. Settings can be customized to tune the search behavior. For example, you can add the following:
+
+- searchFields: Search would be applied on the fields defined here. For instance, Name, Price, etc. 
+
+- textFacets: Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…)
+
+- numericFacets: Numeric facets as the name suggests, display items that have ranges of numeric values.
 
 ```
 var searchClient = new SearchClient(<app-id>, <search-token>);
 
-var result = searhClient
+var result = searchClient
     .searchFields(f1,f2,f3,...)
     .textFacets(f1,f2,f3,...)
     .numericFacets(f1,f2,f3,..)
@@ -58,9 +72,11 @@ var result = searhClient
 ```
 
 `.numericFacetsFilters(f1, lower-bound, upper-bound)` 
+
 Here both lower-bound and upper-bound are inclusive. 
 
 `.geo(lat,lng, radius)`
+
 radius is in meters
 
 ```
@@ -77,8 +93,6 @@ radius is in meters
 `.facetCount(<value>)`      //default 100
 `.sort(f1,f2,f3,...)`
 `typoTolerance(<value>)`    //default 1
-
-
 
 Results
 
