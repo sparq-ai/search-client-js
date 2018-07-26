@@ -1,7 +1,5 @@
 # SearchTap Search Client
 
-# Search Client
-
 Search Client is a light weight search-only client to be used in applications which require search access to their SearchTap data and do not require full blown client [`@searchtap/client`]()
 
 ## Installation
