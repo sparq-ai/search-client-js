@@ -11,16 +11,16 @@ Search Client is a lightweight search-only client that handles only the searches
 
 ### 1. [Installation](#installation)
 
-- [`Browser`](#browser)
-- [`NPM`](#npm)
-- [`Yarn`](#yarn)
+- [Browser](#browser)
+- [NPM](#npm)
+- [Yarn](#yarn)
 
 ### 2. [Quick Start](#quick-start)
 
-- [`Initialize the client`](#initialize-the-searchs-client)
-- [`Configure Search Settings`](#configures-search-settings)
-- [`Search`](#search)
-- [`Search Results`](#search-results)
+- [Initialize the client](#initialize-the-searchs-client)
+- [Configure Search Settings](#configures-search-settings)
+- [Search](#search)
+- [Search Results](#search-results)
 
 ### 3. [Search Options](#options)
 
