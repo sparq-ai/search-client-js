@@ -100,7 +100,7 @@ For the above case, valid values would be 0 to 99.
 
 - `numericFacetsFilters`: 
 
-``
+```
 .numericFacetsFilters(f1, lower-bound, upper-bound)
 ```
 
