@@ -4,19 +4,19 @@
 
 ## Table of Contents
 
-**1. Installation**
+### 1. Installation 
 
 - Frontend
 - NPM
 - Yarn
 
-**2. Quick Start**
+### 2. Quick Start**
 
 - Initialize the client
 - Search
 - Configure/Refine
 
-**3. Getting Help**
+### 3. Getting Help**
 
 # Getting Started
 
