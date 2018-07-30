@@ -54,7 +54,6 @@ You can initiate search by defining a text query and the collection id in the sy
 
 ```
 searchClient.search(<text-query>, <collection-id>)
-
 ```
 
 ### Configure/Refine
@@ -84,15 +83,13 @@ searchClient.numericFacets(f1,[
         maxInclusive: false         //default false
     }
    ])
+   
+```
 
-- `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding:
+ - `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding:
 
 ```
 .filter('discount >=10')
-```
-
-- `search(<text-query>, <collection-id>)`: The above rules are applied on the defined text query here. The collection id can be found on your SearchTap account, this collection id is associated with a specific Application ID.
-
 ```
 
 ### Browser 
