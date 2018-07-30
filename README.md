@@ -35,13 +35,13 @@ To initiate, you will have to create a new client which would require an Applica
 
 - `searchFields` : Search would be applied on the fields defined here. For instance, Name, Price, etc. 
 
-- textFacets: Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…)
+- `textFacets`: Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…)
 
-- numericFacets: Numeric facets as the name suggests, are facets with numeric values (eg. price, age)
+- `numericFacets`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age)
 
-- filter: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding - .filter('discount >=10')
+- `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding - .filter('discount >=10')
 
-- search(<text-query>, <collection-id>): The above rules are applied on the defined text query here. The collection id can be found on your SearchTap account, this collection id is associated with a specific Application ID.
+- `search(<text-query>, <collection-id>)`: The above rules are applied on the defined text query here. The collection id can be found on your SearchTap account, this collection id is associated with a specific Application ID.
 
 ```
 var searchClient = new SearchClient(<app-id>, <search-token>);
@@ -109,10 +109,10 @@ lat is latitude and lng is longitude. Geo Search is also a way to refine search 
 `.sort(f1,f2,f3,...)`
 `typoTolerance(<value>)`    //default 1
 
-- skip is used to ignore results and count defines how many results you want to fetch. 
-- facetCount: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
-- sort: It can be used to further sort the results. For example - Price Low to High would display results starting from low price value to high.
-- typoTolerance: Results with typos can also be shown in search results. By deafult, search queries with only 1 typo would be fetched.
+- `skip` is used to ignore results and count defines how many results you want to fetch. 
+- `facetCount`: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
+- `sort`: It can be used to further sort the results. For example - Price Low to High would display results starting from low price value to high.
+- `typoTolerance`: Results with typos can also be shown in search results. By deafult, search queries with only 1 typo would be fetched.
 
 Results
 
