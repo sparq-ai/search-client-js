@@ -35,7 +35,7 @@ You can use a package manager like npm or yarn.
 
 or
 
-- `yarn add @searchtap/searchclient`
+`yarn add @searchtap/searchclient`
 
 We are webpack friendly.
 
