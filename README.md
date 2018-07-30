@@ -24,11 +24,11 @@ Search Client is a lightweight search-only client that handles only the searches
 
 ### 3. [Search Options](#options)
 
-- `searchFields`
+- [`searchFields`](#search-fields)
 - `facetFields`
 - 
 
-### 4. [Getting Help](#getting)
+### 4. [Getting Help](#getting-help)
 
 ## Installation
 
@@ -110,7 +110,6 @@ searchClient.search(<text-query>, <collection-id>)
     }],
     totalCount: 1234
 }
-
 ```
 
 ## Options
@@ -118,10 +117,6 @@ searchClient.search(<text-query>, <collection-id>)
 ### `.searchFields(f1, f2, f3)`
 
 
-
-### Configure Search Settings
-
-#### Examples
 
 ##### Search Fields
 `searchFields(f1,f2)`
