@@ -47,7 +47,6 @@ To initiate, you will have to create a new client which would require an Applica
 
 ```
 var searchClient = new SearchClient(<app-id>, <search-token>);
-
 ```
 
 
