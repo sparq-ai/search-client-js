@@ -15,7 +15,7 @@ Search Client is a lightweight search-only client that handles only the searches
 - NPM
 - Yarn
 
-### 2. [Quick Start](#quick)
+### 2. [Quick Start](#quick-start)
 
 - Initialize the client
 - Configure Search Settings
@@ -50,7 +50,6 @@ Search Client is a lightweight search-only client that handles only the searches
 
 To initiate, you will have to create a new search client which would require an **Application ID** and a **Search Token**. You can find both on your SearchTap account. 
 
-
 > Always use your search-only tokens to make search operations from public clients like browser or mobile apps. Do not use your admin tokens on public facing clients. 
 
 
@@ -71,7 +70,7 @@ You can configure the default search settings by using various functions before 
 
 ```
 
-Look at the complete definitions for all options available [here]()
+Look at the complete definitions for all options available [here](#options)
 
 ### Search
 
@@ -84,6 +83,34 @@ searchClient.search(<text-query>, <collection-id>)
 ### Search Results 
 
 ```
+{
+    textFacets: {
+        category: [
+            {
+                label: "brand1",
+                value: 100,
+            },
+            ...
+        ]
+    },
+    numericFacets: {
+        price: [
+            {
+                min: 0,
+                max: 100,
+                count: 500
+            },
+            ...
+        ]
+    },
+    query: {}
+    responseTime: 10,       
+    results:[{
+        ...
+    }],
+    totalCount: 1234
+}
+
 ```
 
 ## Options
@@ -93,9 +120,6 @@ searchClient.search(<text-query>, <collection-id>)
 
 
 ### Configure Search Settings
-
-You can use following settings to configure your search behavior. Each setting has a default value which can be changed when making a search query. 
-
 
 #### Examples
 
@@ -216,39 +240,6 @@ Here both lower-bound and upper-bound are inclusive.
 
 ```
 .typoTolerance(<value>)    //default 1
-```
-
-## Results
-
-```
-{
-    textFacets: {
-        category: [
-            {
-                label: "brand1",
-                value: 100,
-            },
-            ...
-        ]
-    },
-    numericFacets: {
-        price: [
-            {
-                min: 0,
-                max: 100,
-                count: 500
-            },
-            ...
-        ]
-    },
-    query: {}
-    responseTime: 10,       
-    results:[{
-        ...
-    }],
-    totalCount: 1234
-}
-
 ```
 
 ## Getting Help
