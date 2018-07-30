@@ -25,8 +25,18 @@ Search Client is a lightweight search-only client that handles only the searches
 ### 3. [Search Options](#options)
 
 - [`searchFields`](#search-fields)
-- `facetFields`
-- 
+- [`facetFields`](#facet-fields)
+- [`textFacets`](#text-facets)
+- [`textFacetFilters`](#text-facet-filters)
+- [`numericFacets`](#numeric-facets)
+- [`numericFacetsFilters`](#numeric-facets-filters)
+- [`filter`](#filter)
+- [`geo`](#geo)
+- [`skip`](#skip)
+- [`count`](#count)
+- [`facetCount](#facet-count)
+- [`sort`](#sort)
+- [`typoTolerance`](#typo-tolerance)
 
 ### 4. [Getting Help](#getting-help)
 
