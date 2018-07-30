@@ -124,7 +124,7 @@ Here both lower-bound and upper-bound are inclusive.
 
 ```
 
-- `skip` is used to ignore results and count defines how many results you want to fetch. 
+- `skip` is used to ignore results and `count` defines how many results you want to fetch. 
 
 ```
 .skip(<skip-value>)       //default 0
