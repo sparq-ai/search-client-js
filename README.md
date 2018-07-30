@@ -18,8 +18,15 @@ Search Client is a lightweight search-only client that handles only the searches
 ### 2. Quick Start
 
 - Initialize the client
+- Configure Search Settings
 - Search
-- Configure/Refine
+- Search Results
+
+### 3. Search Options
+
+- `searchFields`
+- `facetFields`
+- 
 
 ### 3. Getting Help
 
@@ -51,6 +58,21 @@ To initiate, you will have to create a new search client which would require an 
 var searchClient = new SearchClient(<app-id>, <search-token>);
 ```
 
+### Configure Search Settings
+
+You can configure the default search settings by using various functions before making a search query. See an example below
+
+```
+
+    searchClient
+        .searchFields(firstName, lastName, collegeName)
+        .facets(college)
+        ...
+
+```
+
+Look at the complete definitions for all options available [here]()
+
 ### Search
 
 You can initiate search by defining a text query and the collection id in the syntax below. Collection id can be found on your SearchTap account, every collection id is associated with a specific application.
@@ -59,16 +81,20 @@ You can initiate search by defining a text query and the collection id in the sy
 searchClient.search(<text-query>, <collection-id>)
 ```
 
+### Search Results 
+
+```
+```
+
+## Options
+
+### `.searchFields(f1, f2, f3)`
+
+
+
 ### Configure Search Settings
 
 You can use following settings to configure your search behavior. Each setting has a default value which can be changed when making a search query. 
-
-Function | Accepts | Default | Description
---- | --- | --- | --- 
-`searchFields`  |   `array`   | empty array |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dictum non consectetur a erat nam at. <br/> [See Example]()
-`textFacets`  |   `array`   | empty array |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dictum non consectetur a erat nam at. <br/> [See Example]()
-`searchFields`  |   `array`   | empty array |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dictum non consectetur a erat nam at. <br/> [See Example]()
-
 
 
 #### Examples
