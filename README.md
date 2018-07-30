@@ -3,7 +3,7 @@
 [SearchTap](https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software that delivers relevant results instantly. Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client @searchtap/client
 
 - The Search Client library makes it easy to send requests and retrieve search results from the server for you.
-- The package supports the library and handles so that you can focus on .
+- The package supports the library and handles ...... so that you can focus on .......
 
 ## Table of Contents
 
@@ -193,6 +193,6 @@ Here both lower-bound and upper-bound are inclusive.
 
 ```
 
-## Getting help
+## Getting Help
 
 **Need help?** Ask a question [here](https://www.searchtap.io/contact/)
