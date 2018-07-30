@@ -83,7 +83,6 @@ searchClient.numericFacets(f1,[
         maxInclusive: false         //default false
     }
    ])
-   
 ```
 
  - `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding:
@@ -122,17 +121,17 @@ searchClient.numericFacets(f1,[
 ```
 Here min & max denote minimum and maximum values respectively. 
 
-- minInclusive defines a minimum (inclusive) value of the facet. If true, then the defined min value will be included and if false then excluded.
+- `minInclusive` defines a minimum (inclusive) value of the facet. If true, then the defined min value will be included and if false then excluded.
 
-- maxInclusive defines a inclusive maximum value of the facet. If maxinclusive is true, the defined max value will be included and if false then excluded.
+- `maxInclusive` defines a inclusive maximum value of the facet. If maxinclusive is true, the defined max value will be included and if false then excluded.
 
 For the above case, valid values would be 0 to 99.
 
-`.numericFacetsFilters(f1, lower-bound, upper-bound)` 
+- `.numericFacetsFilters(f1, lower-bound, upper-bound)` 
 
 Here both lower-bound and upper-bound are inclusive. 
 
-`.geo(lat,lng, radius)`
+- `.geo(lat,lng, radius)`
 
 lat is latitude and lng is longitude. Geo Search is also a way to refine search results by distance or around certain geo-locations. Results can be retrieved by filtering and sorting around a set of latitude and longitude coordinates. the closer the record is to the lat/lng you provided, the higher it is in the results. radius is in meters.
 
@@ -145,16 +144,19 @@ lat is latitude and lng is longitude. Geo Search is also a way to refine search 
 ])
 
 ```
-`.skip(<skip-value>)`       //default 0
-`.count(<value>)`           //default 30
-`.facetCount(<value>)`      //default 100
-`.sort(f1,f2,f3,...)`
-`typoTolerance(<value>)`    //default 1
 
 - `skip` is used to ignore results and count defines how many results you want to fetch. 
+`.skip(<skip-value>)`       //default 0
+`.count(<value>)`           //default 30
+
 - `facetCount`: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
+`.facetCount(<value>)`      //default 100
+
 - `sort`: It can be used to further sort the results. For example - Price Low to High would display results starting from low price value to high.
-- `typoTolerance`: Results with typos can also be shown in search results. By deafult, search queries with only 1 typo would be fetched.
+`.sort(f1,f2,f3,...)`
+
+- `typoTolerance(<value>)`    //default 1
+`typoTolerance`: Results with typos can also be shown in search results. By deafult, search queries with only 1 typo would be fetched.
 
 Results
 
