@@ -4,15 +4,19 @@
 
 ## Table of Contents
 
-- Frontend
-- TypeScript typings
-- 
-
 **1. Install**
+
+- Frontend
+- NPM
+- Yarn
 
 **2. Quick Start**
 
+- Initialize the client
+
 **3. Getting Help**
+
+# Getting Started
 
 ## About
 
@@ -20,8 +24,6 @@ Search Client is a lightweight search-only client that handles only the searches
 
 - The Search Client library makes it easy to send requests and retrieve search results from the server for you.
 - The package supports the library and handles     so that you can focus on .
-
-# Getting Started
 
 ## Installation
 
