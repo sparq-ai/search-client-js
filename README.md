@@ -84,48 +84,20 @@ searchClient.numericFacets(f1,[
     }
    ])
 ```
-
- - `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding:
-
-```
-.filter('discount >=10')
-```
-
-### Browser 
-
-- TBA
-
-## Usage 
-
-
-## Options
-
-`.searchFields(f1,f2,f3)` 
-
-`.fields(f1,f2,f3)` 
-
-`.textFacets(f1,f2,f3...)`
-
-`.textFacetFilters(f1,['value-1','value-2'])`
-
-```
-.numericFacets(f1,[
-    {
-        min: 0,
-        max: 100,
-        minInclusive: true,         //default true
-        maxInclusive: false         //default false
-    }
-])
-
-```
-Here min & max denote minimum and maximum values respectively. 
+Here `min` & `max` denote minimum and maximum values respectively. 
 
 - `minInclusive` defines a minimum (inclusive) value of the facet. If true, then the defined min value will be included and if false then excluded.
 
 - `maxInclusive` defines a inclusive maximum value of the facet. If maxinclusive is true, the defined max value will be included and if false then excluded.
 
 For the above case, valid values would be 0 to 99.
+
+ - `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding:
+
+```
+.filter('discount >=10')
+```
+`.textFacetFilters(f1,['value-1','value-2'])`
 
 - `.numericFacetsFilters(f1, lower-bound, upper-bound)` 
 
@@ -169,7 +141,17 @@ lat is latitude and lng is longitude. Geo Search is also a way to refine search 
 typoTolerance(<value>)`    //default 1
 ```
 
+
+### Browser 
+
+- TBA
+
+## Usage 
+
+## Options
+
 ## Results
+
 
 ```
 {
@@ -199,10 +181,6 @@ typoTolerance(<value>)`    //default 1
     }],
     totalCount: 1234
 }
-
-
-
-
 
 ```
 
