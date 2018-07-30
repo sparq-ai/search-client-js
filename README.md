@@ -195,7 +195,7 @@ Here `min` & `max` denote minimum and maximum values respectively.
 
 ##### Numeric Facets Filters
 
-- `numericFacetsFilters`: 
+- `numericFacetsFilters`: `numericFacetsFilters` let's you define a lower and an upper bound value for a numeric facet to fetch results lying within the range. 
 
 ```
 .numericFacetsFilters(f1, lower-bound, upper-bound)
