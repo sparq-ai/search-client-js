@@ -1,12 +1,14 @@
-# Table of Contents
+# SearchTap Search Client
+
+[SearchTap] (https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software. 
+
+## Table of Contents
 
 **1. Install**
 
 **2. Quick Start**
 
 **3. Getting Help**
-
-# SearchTap Search Client
 
 ## About
 
