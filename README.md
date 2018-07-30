@@ -1,8 +1,10 @@
 # Table of Contents
 
-**1. Install**
-**2. Quick Start**
-**3. Getting Help**
+## **1. Install**
+
+## **2. Quick Start**
+
+## **3. Getting Help**
 
 # SearchTap Search Client
 
