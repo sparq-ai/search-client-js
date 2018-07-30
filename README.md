@@ -112,7 +112,7 @@ Here both lower-bound and upper-bound are inclusive.
 .filter('discount >=10')
 ```
 
-- `.geo(lat,lng, radius)`: `lat` is latitude and `lng` is longitude. Geo Search is also a way to refine search results by distance or around certain geo-locations. Results can be retrieved by filtering and sorting around a set of latitude and longitude coordinates. the closer the record is to the lat/lng you provided, the higher it is in the results. Radius is in meters.
+- `.geo(lat,lng, radius)`: `lat` is latitude and `lng` is longitude. Geo Search is also a way to refine search results by distance or around certain geo-locations. Results can be retrieved by filtering and sorting around a set of latitude and longitude coordinates. the closer the record is to the lat/lng you provided, the higher it is in the results. `radius` is in meters.
 
 ```
 .geo([
@@ -126,14 +126,18 @@ Here both lower-bound and upper-bound are inclusive.
 
 - `skip` is used to ignore results and count defines how many results you want to fetch. 
 
-```.skip(<skip-value>)`       //default 0
-`.count(<value>)`           //default 30
+```
+.skip(<skip-value>)       //default 0
+```
+
+```
+.count(<value>)           //default 30
 ```
 
 - `facetCount`: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
 
 ```
-.facetCount(<value>)`      //default 100
+.facetCount(<value>)      //default 100
 ```
 
 - `sort`: It can be used to further sort the results. For example - Price Low to High would display results starting from low price value to high.
@@ -147,7 +151,6 @@ Here both lower-bound and upper-bound are inclusive.
 ```
 typoTolerance(<value>)`    //default 1
 ```
-
 
 ### Browser 
 
