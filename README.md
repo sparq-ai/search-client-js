@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-**1. Install**
+**1. Installation**
 
 - Frontend
 - NPM
