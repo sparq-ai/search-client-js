@@ -128,9 +128,6 @@ Here both lower-bound and upper-bound are inclusive.
 
 ```
 .skip(<skip-value>)       //default 0
-```
-
-```
 .count(<value>)           //default 30
 ```
 
@@ -149,7 +146,7 @@ Here both lower-bound and upper-bound are inclusive.
 - `typoTolerance`: Results with typos can also be shown in search results. By deafult, search queries with only 1 typo would be fetched.
 
 ```
-typoTolerance(<value>)`    //default 1
+typoTolerance(<value>)    //default 1
 ```
 
 ### Browser 
