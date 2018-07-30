@@ -11,16 +11,16 @@ Search Client is a lightweight search-only client that handles only the searches
 
 ### 1. [Installation](#installation)
 
-- Browser
-- NPM
-- Yarn
+- [`Browser`](#browser)
+- [`NPM`](#npm)
+- [`Yarn`](#yarn)
 
 ### 2. [Quick Start](#quick-start)
 
-- Initialize the client
-- Configure Search Settings
-- Search
-- Search Results
+- [`Initialize the client`](#initialize-the-searchs-client)
+- [`Configure Search Settings`](#configures-search-settings)
+- [`Search`](#search)
+- [`Search Results`](#search-results)
 
 ### 3. [Search Options](#options)
 
@@ -42,15 +42,15 @@ Search Client is a lightweight search-only client that handles only the searches
 
 ## Installation
 
-**Browser**
+##### Browser
 
 `<script src='https://cdn.jsdelivr.net/npm/@searchtap/search-client/lib/index.min.js'></script>`
 
-**NPM**
+##### NPM
 
 `npm install @searchtap/search-client --save`
 
-**YARN**
+##### YARN
 
 `yarn add @searchtap/search-client`
 
