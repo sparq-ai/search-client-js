@@ -1,8 +1,12 @@
 # SearchTap Search Client
 
-[SearchTap](https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software. 
+[SearchTap](https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software that delivers relevant results instantly.
 
 ## Table of Contents
+
+- Frontend
+- TypeScript typings
+- 
 
 **1. Install**
 
@@ -17,28 +21,35 @@ Search Client is a lightweight search-only client that handles only the searches
 - The Search Client library makes it easy to send requests and retrieve search results from the server for you.
 - The package supports the library and handles     so that you can focus on .
 
+# Getting Started
+
 ## Installation
 
-You can use the following methods to install the package
+**Frontend**
 
-### NPM or Yarn
+You can use a package manager like npm or yarn.
 
-- `npm i --save @searchtap/searchclient`
+`npm install @searchtap/searchclient --save`
 
 or
 
 - `yarn add @searchtap/searchclient`
 
+We are webpack friendly.
 
-### Browser 
+## Quick Start
 
-- TBA
+### Create a new client/Initialize the client
 
-## Usage 
+To initiate, you will have to create a new client which would require an Application ID and search token (API Key). You can find both on your SearchTap account. 
 
-### Create a New Client
+```
+var searchClient = new SearchClient(<app-id>, <search-token>);
 
-To initiate, you will have to create a new client which would require an Application ID and search token (API Key). You can find both on your SearchTap account. Settings can be customized to tune the search behavior. For example, you can add the following:
+```
+
+
+Settings can be customized to tune the search behavior. For example, you can add the following:
 
 - `searchFields` : Search would be applied on the fields defined here. For instance, Name, Price, etc. 
 
@@ -63,6 +74,13 @@ var result = searchClient
     .search(<text-query>, <collection-id>)
 
 ```
+
+### Browser 
+
+- TBA
+
+## Usage 
+
 
 ## Options
 
