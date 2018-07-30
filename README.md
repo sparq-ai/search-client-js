@@ -1,15 +1,17 @@
 # SearchTap Search Client
 
-[SearchTap](https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software that delivers relevant results instantly. Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client @searchtap/client
+[SearchTap](https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software that delivers relevant results instantly. 
+
+Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client `@searchtap/client`
 
 - The Search Client library makes it easy to send requests and retrieve search results from the server for you.
 - The package supports the library and handles ...... so that you can focus on .......
 
 ## Table of Contents
 
-### 1. Installation 
+### 1. [Installation](#installation)
 
-- Frontend
+- Browser
 - NPM
 - Yarn
 
@@ -21,40 +23,61 @@
 
 ### 3. Getting Help
 
-# Getting Started
-
 ## Installation
 
-**Frontend**
+**Browser**
 
-You can use a package manager like npm or yarn. Also, we are webpack friendly.
+`<script src='https://cdn.jsdelivr.net/npm/@searchtap/search-client/lib/index.min.js'></script>`
 
-`npm install @searchtap/searchclient --save`
+**NPM**
 
-or
+`npm install @searchtap/search-client --save`
 
-`yarn add @searchtap/searchclient`
+**YARN**
+
+`yarn add @searchtap/search-client`
 
 ## Quick Start
 
-### Create a new client/Initialize the client
+### Initialize the Search Client
 
-To initiate, you will have to create a new client which would require an Application ID and search token (API Key). You can find both on your SearchTap account. 
+To initiate, you will have to create a new search client which would require an **Application ID** and a **Search Token**. You can find both on your SearchTap account. 
+
+
+> Always use your search-only tokens to make search operations from public clients like browser or mobile apps. Do not use your admin tokens on public facing clients. 
+
 
 ```
 var searchClient = new SearchClient(<app-id>, <search-token>);
 ```
+
 ### Search
 
-You can initiate search by defining a text query and the collection id in the syntax below. Collection id can be found on your SearchTap account, every collection id is associated with a specific Application ID.
+You can initiate search by defining a text query and the collection id in the syntax below. Collection id can be found on your SearchTap account, every collection id is associated with a specific application.
 
 ```
 searchClient.search(<text-query>, <collection-id>)
 ```
 
-### Configure/Refine
+### Configure Search Settings
 
-You can use certain settings to customize, fine tune your search behavior and results. For example, you can add the following:
+You can use following settings to configure your search behavior. Each setting has a default value which can be changed when making a search query. 
+
+Function | Accepts | Default | Description
+--- | --- | --- | --- 
+`searchFields`  |   `array`   | empty array |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dictum non consectetur a erat nam at. <br/> [See Example]()
+`textFacets`  |   `array`   | empty array |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dictum non consectetur a erat nam at. <br/> [See Example]()
+`searchFields`  |   `array`   | empty array |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dictum non consectetur a erat nam at. <br/> [See Example]()
+
+
+
+#### Examples
+
+##### Search Fields
+`searchFields(f1,f2)`
+
+
+
 
 - `searchFields` : Search would be applied on the fields defined here. For instance, Name, Price, etc. 
 
@@ -169,14 +192,6 @@ Here both lower-bound and upper-bound are inclusive.
 .typoTolerance(<value>)    //default 1
 ```
 
-### Browser 
-
-- TBA
-
-## Usage 
-
-## Options
-
 ## Results
 
 ```
@@ -212,4 +227,6 @@ Here both lower-bound and upper-bound are inclusive.
 
 ## Getting Help
 
-**Need help?** Ask a question [here](https://www.searchtap.io/contact/)
+- **Need help?** Ask a question [here](https://github.com/searchtap/search-client-js/issues/new)
+
+
