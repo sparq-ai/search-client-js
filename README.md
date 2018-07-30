@@ -72,6 +72,12 @@ searchClient.searchFields(f1,f2,f3,...)
 searchClient.textFacets(f1,f2,f3,...)
 ```
 
+- `textFacetFilters`: Further refine your search results by defining specific values of a text facet. For instance, if you wish to show results for specific brands only (zara & tommy hilfiger) while applying the facet 'Brand' - you would specify:
+
+```
+.textFacetFilters(f1,['zara','tommy hilfiger']) 
+```
+
 - `numericFacets`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age)
 
 ```
@@ -92,20 +98,21 @@ Here `min` & `max` denote minimum and maximum values respectively.
 
 For the above case, valid values would be 0 to 99.
 
+- `numericFacetsFilters`: 
+
+``
+.numericFacetsFilters(f1, lower-bound, upper-bound)
+```
+
+Here both lower-bound and upper-bound are inclusive. 
+
  - `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding:
 
 ```
 .filter('discount >=10')
 ```
-`.textFacetFilters(f1,['value-1','value-2'])`
 
-- `.numericFacetsFilters(f1, lower-bound, upper-bound)` 
-
-Here both lower-bound and upper-bound are inclusive. 
-
-- `.geo(lat,lng, radius)`
-
-lat is latitude and lng is longitude. Geo Search is also a way to refine search results by distance or around certain geo-locations. Results can be retrieved by filtering and sorting around a set of latitude and longitude coordinates. the closer the record is to the lat/lng you provided, the higher it is in the results. radius is in meters.
+- `.geo(lat,lng, radius)`: `lat` is latitude and `lng` is longitude. Geo Search is also a way to refine search results by distance or around certain geo-locations. Results can be retrieved by filtering and sorting around a set of latitude and longitude coordinates. the closer the record is to the lat/lng you provided, the higher it is in the results. Radius is in meters.
 
 ```
 .geo([
@@ -151,7 +158,6 @@ typoTolerance(<value>)`    //default 1
 ## Options
 
 ## Results
-
 
 ```
 {
