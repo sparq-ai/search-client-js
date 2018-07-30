@@ -29,15 +29,13 @@ Search Client is a lightweight search-only client that handles only the searches
 
 **Frontend**
 
-You can use a package manager like npm or yarn.
+You can use a package manager like npm or yarn. Also, we are webpack friendly.
 
 `npm install @searchtap/searchclient --save`
 
 or
 
 `yarn add @searchtap/searchclient`
-
-We are webpack friendly.
 
 ## Quick Start
 
@@ -48,31 +46,50 @@ To initiate, you will have to create a new client which would require an Applica
 ```
 var searchClient = new SearchClient(<app-id>, <search-token>);
 ```
+### Search
 
+You can initiate search by defining a text query and the collection id in the syntax below. Collection id can be found on your SearchTap account, every collection id is associated with a specific Application ID.
 
-Settings can be customized to tune the search behavior. For example, you can add the following:
+```
+searchClient.search(<text-query>, <collection-id>)
+
+```
+
+### Configure/Refine
+
+You can use certain settings to customize, fine tune your search behavior and results. For example, you can add the following:
 
 - `searchFields` : Search would be applied on the fields defined here. For instance, Name, Price, etc. 
 
+```
+searchClient.searchFields(f1,f2,f3,...) 
+```
+
 - `textFacets`: Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…)
+
+```
+searchClient.textFacets(f1,f2,f3,...)
+```
 
 - `numericFacets`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age)
 
-- `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding - .filter('discount >=10')
+```
+searchClient.numericFacets(f1,[
+    {
+        min: 0,
+        max: 100,
+        minInclusive: true,         //default true
+        maxInclusive: false         //default false
+    }
+   ])
 
-- `search(<text-query>, <collection-id>)`: The above rules are applied on the defined text query here. The collection id can be found on your SearchTap account, this collection id is associated with a specific Application ID.
+- `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding:
 
 ```
-var searchClient = new SearchClient(<app-id>, <search-token>);
+.filter('discount >=10')
+```
 
-var result = searchClient
-    .searchFields(f1,f2,f3,...)
-    .textFacets(f1,f2,f3,...)
-    .numericFacets(f1,f2,f3,..)
-    .filter('')
-    ...
-    ...
-    .search(<text-query>, <collection-id>)
+- `search(<text-query>, <collection-id>)`: The above rules are applied on the defined text query here. The collection id can be found on your SearchTap account, this collection id is associated with a specific Application ID.
 
 ```
 
