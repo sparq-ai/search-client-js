@@ -146,19 +146,24 @@ lat is latitude and lng is longitude. Geo Search is also a way to refine search 
 ```
 
 - `skip` is used to ignore results and count defines how many results you want to fetch. 
+
 `.skip(<skip-value>)`       //default 0
 `.count(<value>)`           //default 30
 
 - `facetCount`: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
+
 `.facetCount(<value>)`      //default 100
 
 - `sort`: It can be used to further sort the results. For example - Price Low to High would display results starting from low price value to high.
+
 `.sort(f1,f2,f3,...)`
 
-- `typoTolerance(<value>)`    //default 1
-`typoTolerance`: Results with typos can also be shown in search results. By deafult, search queries with only 1 typo would be fetched.
+- `typoTolerance`: Results with typos can also be shown in search results. By deafult, search queries with only 1 typo would be fetched.
 
-Results
+`typoTolerance(<value>)`    //default 1
+
+
+## Results
 
 ```
 {
