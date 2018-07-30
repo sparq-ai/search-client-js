@@ -86,9 +86,9 @@ searchClient.numericFacets(f1,[
 ```
 Here `min` & `max` denote minimum and maximum values respectively. 
 
-       - `minInclusive` defines a minimum (inclusive) value of the facet. If true, then the defined min value will be included and if false then excluded.
+`minInclusive` defines a minimum (inclusive) value of the facet. If true, then the defined min value will be included and if false then excluded.
 
-      - `maxInclusive` defines a inclusive maximum value of the facet. If maxinclusive is true, the defined max value will be included and if false then excluded.
+`maxInclusive` defines a inclusive maximum value of the facet. If maxinclusive is true, the defined max value will be included and if false then excluded.
 
 For the above case, valid values would be 0 to 99.
 
