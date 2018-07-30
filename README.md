@@ -17,8 +17,8 @@ Search Client is a lightweight search-only client that handles only the searches
 
 ### 2. [Quick Start](#quick-start)
 
-- [Initialize the client](#initialize-the-searchs-client)
-- [Configure Search Settings](#configures-search-settings)
+- [Initialize the client](#initialize-the-search-client)
+- [Configure Search Settings](#configure-search-settings)
 - [Search](#search)
 - [Search Results](#search-results)
 
