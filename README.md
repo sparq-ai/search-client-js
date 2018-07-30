@@ -33,7 +33,7 @@ or
 
 To initiate, you will have to create a new client which would require an Application ID and search token (API Key). You can find both on your SearchTap account. Settings can be customized to tune the search behavior. For example, you can add the following:
 
-- "searchFields" : Search would be applied on the fields defined here. For instance, Name, Price, etc. 
+- 'searchFields' : Search would be applied on the fields defined here. For instance, Name, Price, etc. 
 
 - textFacets: Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…)
 
