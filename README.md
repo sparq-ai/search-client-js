@@ -74,25 +74,49 @@ searchClient.textFacets(f1,f2,f3,...)
 .textFacetFilters(f1,['zara','tommy hilfiger']) 
 ```
 
-- `numericFacets`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age)
+- `numericFacets`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age). `numericFacets` let's you define the ranges you want to show to the end user. Below given examples might be helpful to understand the concept:
+
+Example 1:
 
 ```
-searchClient.numericFacets(f1,[
+searchClient.numericFacets("Price",[
     {
         min: 0,
         max: 100,
         minInclusive: true,         //default true
         maxInclusive: false         //default false
     }
+```
+For the above case, valid values would be 0 to 99 as by default `maxInclusive` here is false.
+
+Example 2: 
+
+```
+searchClient.numericFacets("Price",[
+    {
+        min: 0,
+        max: 100,
+        minInclusive: true,         //default true
+        maxInclusive: false         //default false
+    },
+    {
+        min: 100,
+        max: 500,
+        minInclusive: true,         //default true
+        maxInclusive: false         //default false
+    }
    ])
 ```
+Example 2 would show up on your search result page as: 
+
+- Price Rs. 0 to 99 
+- Price Rs. 100 to 499
+
 Here `min` & `max` denote minimum and maximum values respectively. 
 
 `minInclusive` defines a minimum (inclusive) value of the facet. If true, then the defined min value will be included and if false then excluded.
 
 `maxInclusive` defines a inclusive maximum value of the facet. If maxinclusive is true, the defined max value will be included and if false then excluded.
-
-For the above case, valid values would be 0 to 99.
 
 - `numericFacetsFilters`: 
 
@@ -108,7 +132,7 @@ Here both lower-bound and upper-bound are inclusive.
 .filter('discount >=10')
 ```
 
-- `.geo(lat,lng, radius)`: `lat` is latitude and `lng` is longitude. Geo Search is also a way to refine search results by distance or around certain geo-locations. Results can be retrieved by filtering and sorting around a set of latitude and longitude coordinates. the closer the record is to the lat/lng you provided, the higher it is in the results. `radius` is in meters.
+- `geo(lat,lng, radius)`: `lat` is latitude and `lng` is longitude. Geo Search is also a way to refine search results by distance or around certain geo-locations. Results can be retrieved by filtering and sorting around a set of latitude and longitude coordinates. The closer the record is to the lat/lng you provided, the higher it is in the results. `radius` is in meters.
 
 ```
 .geo([
@@ -133,13 +157,13 @@ Here both lower-bound and upper-bound are inclusive.
 .facetCount(<value>)      //default 100
 ```
 
-- `sort`: It can be used to further sort the results. For example - Price Low to High would display results starting from low price value to high.
+- `sort`: It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
 
 ```
 .sort(f1,f2,f3,...)
 ```
 
-- `typoTolerance`: Results with typos can also be shown in search results. By deafult, search queries with only 1 typo would be fetched.
+- `typoTolerance`: Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
 
 ```
 .typoTolerance(<value>)    //default 1
