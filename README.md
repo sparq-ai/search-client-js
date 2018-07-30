@@ -15,20 +15,20 @@ Search Client is a lightweight search-only client that handles only the searches
 - NPM
 - Yarn
 
-### 2. Quick Start
+### 2. [Quick Start](#quick start)
 
 - Initialize the client
 - Configure Search Settings
 - Search
 - Search Results
 
-### 3. Search Options
+### 3. [Search Options](#options)
 
 - `searchFields`
 - `facetFields`
 - 
 
-### 3. Getting Help
+### 4. [Getting Help](#getting help)
 
 ## Installation
 
