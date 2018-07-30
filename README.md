@@ -52,7 +52,6 @@ To initiate, you will have to create a new search client which would require an 
 
 > Always use your search-only tokens to make search operations from public clients like browser or mobile apps. Do not use your admin tokens on public facing clients. 
 
-
 ```
 var searchClient = new SearchClient(<app-id>, <search-token>);
 ```
@@ -114,15 +113,7 @@ searchClient.search(<text-query>, <collection-id>)
 
 ## Options
 
-### `.searchFields(f1, f2, f3)`
-
-
-
 ##### Search Fields
-`searchFields(f1,f2)`
-
-
-
 
 - `searchFields` : Search would be applied on the fields defined here. For instance, Name, Price, etc. 
 
@@ -130,17 +121,23 @@ searchClient.search(<text-query>, <collection-id>)
 searchClient.searchFields(f1,f2,f3,...) 
 ```
 
+##### Text Facets
+
 - `textFacets`: Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…)
 
 ```
 searchClient.textFacets(f1,f2,f3,...)
 ```
 
+##### Text Facet Filters
+
 - `textFacetFilters`: Further refine your search results by defining specific values of a text facet. For instance, if you wish to show results for specific brands only (zara & tommy hilfiger) while applying the facet 'Brand' - you would specify:
 
 ```
 .textFacetFilters(f1,['zara','tommy hilfiger']) 
 ```
+
+##### Numeric Facets
 
 - `numericFacets`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age). `numericFacets` let's you define the ranges you want to show to the end user. Below given examples might be helpful to understand the concept:
 
@@ -175,7 +172,7 @@ searchClient.numericFacets("Price",[
     }
    ])
 ```
-Example 2 would show up on your search result page as: 
+**Example 2 would show up on your search result page as:**
 
 - Price Rs. 0 to 99 
 - Price Rs. 100 to 499
@@ -186,6 +183,8 @@ Here `min` & `max` denote minimum and maximum values respectively.
 
 `maxInclusive` defines a inclusive maximum value of the facet. If maxinclusive is true, the defined max value will be included and if false then excluded.
 
+##### Numeric Facets Filters
+
 - `numericFacetsFilters`: 
 
 ```
@@ -194,11 +193,15 @@ Here `min` & `max` denote minimum and maximum values respectively.
 
 Here both lower-bound and upper-bound are inclusive. 
 
+##### Filter
+
  - `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by adding:
 
 ```
 .filter('discount >=10')
 ```
+
+##### Geo
 
 - `geo(lat,lng, radius)`: `lat` is latitude and `lng` is longitude. Geo Search is also a way to refine search results by distance or around certain geo-locations. Results can be retrieved by filtering and sorting around a set of latitude and longitude coordinates. The closer the record is to the lat/lng you provided, the higher it is in the results. `radius` is in meters.
 
@@ -212,6 +215,8 @@ Here both lower-bound and upper-bound are inclusive.
 
 ```
 
+##### Skip & Count
+
 - `skip` is used to ignore results and `count` defines how many results you want to fetch. 
 
 ```
@@ -219,17 +224,23 @@ Here both lower-bound and upper-bound are inclusive.
 .count(<value>)           //default 30
 ```
 
+##### Facet Count
+
 - `facetCount`: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
 
 ```
 .facetCount(<value>)      //default 100
 ```
 
+##### Sort
+
 - `sort`: It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
 
 ```
 .sort(f1,f2,f3,...)
 ```
+
+##### Typo Tolerance
 
 - `typoTolerance`: Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
 
