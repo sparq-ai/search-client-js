@@ -34,7 +34,7 @@ Search Client is a lightweight search-only client that handles only the searches
 - [`geo`](#geo)
 - [`skip`](#skip)
 - [`count`](#count)
-- [`facetCount](#facet-count)
+- [`facetCount`](#facet-count)
 - [`sort`](#sort)
 - [`typoTolerance`](#typo-tolerance)
 
