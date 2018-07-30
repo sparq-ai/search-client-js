@@ -13,6 +13,8 @@
 **2. Quick Start**
 
 - Initialize the client
+- Search
+- Configure/Refine
 
 **3. Getting Help**
 
