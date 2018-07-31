@@ -181,7 +181,7 @@ Here `min` & `max` denote minimum and maximum values respectively.
 
 ##### Numeric Facets Filters
 
-`numericFacetsFilters` `[String, number, number]`  `[optional]` : let's you define a lower and an upper bound value for a numeric facet to fetch results lying within the range. 
+`numericFacetsFilters(...)` `[String, number, number]`  `[optional]` : let's you define a lower and an upper bound value for a numeric facet to fetch results lying within the range. 
 
 The default behavior is to apply no filter.
 
@@ -193,7 +193,7 @@ Here both lower-bound and upper-bound are inclusive.
 
 ##### Filter
 
-`filter` `[String, optional]` : Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by using following syntax. You can also combine multiple filter conditions by using keywords such as `AND`, `OR`, `NOT`. Feel free to group conditions using brackets `(...)`
+`filter(...)` `[String, optional]` : Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by using following syntax. You can also combine multiple filter conditions by using keywords such as `AND`, `OR`, `NOT`. Feel free to group conditions using brackets `(...)`
 
 - Simple Filter
 ```
@@ -242,7 +242,7 @@ The above function accepts array of objects. Filter will be applied on the locat
 
 ##### Skip
 
-`skip` `[number, optional]` : `[skip]` is used in pagination to bypass a specified number of search results and then return the remaining results. The default value set for `skip` is 0. 
+`skip(...)` `[number, optional]` : `[skip]` is used in pagination to bypass a specified number of search results and then return the remaining results. The default value set for `skip` is 0. 
 
 ```
 .skip(<skip-value>)       //default 0
@@ -250,7 +250,7 @@ The above function accepts array of objects. Filter will be applied on the locat
 
 ##### Count
 
-`count` `[number, optional]` : Defines how many results you want to display on the search result page. The default value set is 30. 
+`count(...)` `[number, optional]` : Defines how many results you want to display on the search result page. The default value set is 30. 
 
 ```
 .count(<value>)           //default 30
@@ -258,7 +258,7 @@ The above function accepts array of objects. Filter will be applied on the locat
 
 ##### Facet Count
 
-`facetCount` `[number, optional]` : Defines the number of items you want to show for a defined facet. The default count value for facets is set as 100.
+`facetCount(...)` `[number, optional]` : Defines the number of items you want to show for a defined facet. The default count value for facets is set as 100.
 
 ```
 .facetCount(<value>)      //default 100
@@ -266,7 +266,7 @@ The above function accepts array of objects. Filter will be applied on the locat
 
 ##### Sort
 
-`sort` `[array, optional]` : It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
+`sort(...)` `[array, optional]` : It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
 
 ```
 .sort(f1,f2,f3,...)
@@ -274,7 +274,7 @@ The above function accepts array of objects. Filter will be applied on the locat
 
 ##### Typo Tolerance
 
-`typoTolerance` `[number, optional]` : Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
+`typoTolerance(...)` `[number, optional]` : Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
 
 ```
 .typoTolerance(<value>)    //default 1
