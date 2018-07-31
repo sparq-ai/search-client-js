@@ -55,7 +55,7 @@ Search Client is a lightweight search-only client that handles only the searches
 
 ### Initialize the Search Client
 
-To initiate, you will have to create a new search client which would require an **Application ID** and a **Search Token**. You can find both on your SearchTap account. 
+To initiate, you will have to create a new search client which would require an **Application ID** and a **Search Token**. You can find both on your [SearchTap account](https://dashboard.searchtap.io/login). 
 
 > Always use your search-only tokens to make search operations from public clients like browser or mobile apps. Do not use your admin tokens on public facing clients. 
 
@@ -233,7 +233,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Skip
 
-`skip` is used to bypass a number of search results.
+`skip` is used to bypass a specified number of search results and then return the remaining results.
 
 ```
 .skip(<skip-value>)       //default 0
@@ -249,7 +249,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Facet Count
 
-`facetCount`: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
+`facetCount []`: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
 
 ```
 .facetCount(<value>)      //default 100
@@ -257,7 +257,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Sort
 
-`sort`: It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
+`sort` [] : It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
 
 ```
 .sort(f1,f2,f3,...)
