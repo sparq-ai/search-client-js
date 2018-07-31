@@ -195,17 +195,17 @@ Here both lower-bound and upper-bound are inclusive.
 
 `filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by using following syntax. You can also combine multiple filter conditions by using keywords such as `AND`, `OR`, `NOT`. Feel free to group conditions using brackets `(...)`
 
-Simple Filter
+- Simple Filter
 ```
 .filter('discount >=10')
 ```
 
-Combine Multiple Filter Conditions
+- Combine Multiple Filter Conditions
 ```
 .filter('discount >= 10 AND quantity > 0')
 ```
 
-Group Filters
+- Group Filters
 ```
 .filter('discount >=10 AND (quantity > 0 OR isDigitalGood = 0)')
 ```
