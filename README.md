@@ -136,7 +136,7 @@ searchClient.textFacets(f1,f2,f3,...)
 
 ##### Text Facet Filters
 
-`textFacetFilters(...)` `[optional]` : Further refine your search results by defining specific values of a text facet. For instance, if you wish to show results for specific brands only (zara & tommy hilfiger) while applying the facet 'Brand' - use following syntax. 
+`textFacetFilters(...)` `[String, array]` `[optional]` : Further refine your search results by defining specific values of a text facet. For instance, if you wish to show results for specific brands only (zara & tommy hilfiger) while applying the facet 'Brand' - use following syntax. 
 
 The default behavior is to apply no filters.
 
@@ -146,7 +146,7 @@ searchClient.textFacetFilters('Brand',['zara','tommy hilfiger'])
 
 ##### Numeric Facets
 
-`numericFacets(...)` `[optional]`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age). `numericFacets` let's you define the ranges you want to show to the end user along with count of records in that range. You can use the same to create a histogram slider for your front-end UI. 
+`numericFacets(...)` `[String, array of object]` `[optional]`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age). `numericFacets` let's you define the ranges you want to show to the end user along with count of records in that range. You can use the same to create a histogram slider for your front-end UI. 
 
 See following example to understand how to define facet object, 
 
@@ -181,7 +181,7 @@ Here `min` & `max` denote minimum and maximum values respectively.
 
 ##### Numeric Facets Filters
 
-`numericFacetsFilters` `[optional]` : let's you define a lower and an upper bound value for a numeric facet to fetch results lying within the range. 
+`numericFacetsFilters` `[String, number, number]`  `[optional]` : let's you define a lower and an upper bound value for a numeric facet to fetch results lying within the range. 
 
 The default behavior is to apply no filter.
 
@@ -193,7 +193,7 @@ Here both lower-bound and upper-bound are inclusive.
 
 ##### Filter
 
-`filter`: Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by using following syntax. You can also combine multiple filter conditions by using keywords such as `AND`, `OR`, `NOT`. Feel free to group conditions using brackets `(...)`
+`filter` `[String, optional]` : Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by using following syntax. You can also combine multiple filter conditions by using keywords such as `AND`, `OR`, `NOT`. Feel free to group conditions using brackets `(...)`
 
 - Simple Filter
 ```
@@ -212,9 +212,9 @@ Here both lower-bound and upper-bound are inclusive.
 
 ##### Geo
 
-`geo(lat,lng, radius)` `[optional]`:  `lat` is latitude, `lng` is longitude, `radius` is in meters. 
+`geo(lat,lng, radius)` `[number, number, number]` `[optional]`:  `lat` is latitude, `lng` is longitude, `radius` is in meters. 
 
-Geo Search is also a way to refine search results by distance around a given `lat, lng` co-ordinates. The closer the record is to the `lat,lng` provided, the higher it is in the results. 
+Geo Search is a way to refine search results by distance around a given `lat, lng` co-ordinates or to filter results inside a polygonal area (see example below). For the former case, closer the record to the `lat,lng` provided, higher is it's probability to show up in the search results. 
 
 If no `radius` is provided, results will not be limited but still be sorted on basis of distance from provided `lat,lng`.
 
@@ -223,17 +223,26 @@ The default behavior is to not apply any geo filter.
 ```
 .geo([
     {
-        lat:123.21, 
-        lng:23.12, 
-        radius: 30000
+        lat:48.09, 
+        lng:-104.82, 
+    },
+    {
+        lat:46.85, 
+        lng:-114.01, 
+    },
+    {
+        lat:42.85, 
+        lng:-106.31, 
     }
 ])
 
 ```
 
+The above function accepts array of objects. Filter will be applied on the locations covered inside the formed polygonal area. 
+
 ##### Skip
 
-`skip` is used to bypass a specified number of search results and then return the remaining results.
+`skip` `[number, optional]` : `[skip]` is used in pagination to bypass a specified number of search results and then return the remaining results. The default value set for `skip` is 0. 
 
 ```
 .skip(<skip-value>)       //default 0
@@ -241,7 +250,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Count
 
-`count` defines how many results you want to display. 
+`count` `[number, optional]` : Defines how many results you want to display on the search result page. The default value set is 30. 
 
 ```
 .count(<value>)           //default 30
@@ -249,7 +258,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Facet Count
 
-`facetCount []`: Defines the number of items you want to show for a defined facet. Default count value for facets is set as 100.
+`facetCount` `[number, optional]` : Defines the number of items you want to show for a defined facet. The default count value for facets is set as 100.
 
 ```
 .facetCount(<value>)      //default 100
@@ -257,7 +266,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Sort
 
-`sort` [] : It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
+`sort` `[array, optional]` : It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
 
 ```
 .sort(f1,f2,f3,...)
@@ -265,7 +274,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Typo Tolerance
 
-`typoTolerance`: Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
+`typoTolerance` `[number, optional]` : Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
 
 ```
 .typoTolerance(<value>)    //default 1
