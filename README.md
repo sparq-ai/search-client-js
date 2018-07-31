@@ -233,7 +233,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Skip
 
-`skip` is used to ignore results.
+`skip` is used to bypass a number of search results.
 
 ```
 .skip(<skip-value>)       //default 0
@@ -241,7 +241,7 @@ The default behavior is to not apply any geo filter.
 
 ##### Count
 
-`count` defines how many results you want to fetch. 
+`count` defines how many results you want to display. 
 
 ```
 .count(<value>)           //default 30
