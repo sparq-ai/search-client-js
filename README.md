@@ -231,12 +231,19 @@ The default behavior is to not apply any geo filter.
 
 ```
 
-##### Skip & Count
+##### Skip
 
-`skip` is used to ignore results and `count` defines how many results you want to fetch. 
+`skip` is used to ignore results.
 
 ```
 .skip(<skip-value>)       //default 0
+```
+
+##### Count
+
+`count` defines how many results you want to fetch. 
+
+```
 .count(<value>)           //default 30
 ```
 
