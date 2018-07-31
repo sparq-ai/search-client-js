@@ -2,10 +2,7 @@
 
 [SearchTap](https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software that delivers relevant results instantly. 
 
-Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client `@searchtap/client`
-
-- The Search Client library makes it easy to send requests and retrieve search results from the server for you.
-- The package supports the library and handles ...... so that you can focus on .......
+Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client `@searchtap/client`. The Search Client library makes it easy to send requests and retrieve search results from the server for you.
 
 ## Table of Contents
 
@@ -153,19 +150,7 @@ searchClient.textFacetFilters('Brand',['zara','tommy hilfiger'])
 
 See following example to understand how to define facet object, 
 
-**Example 1**
-```
-searchClient.numericFacets("Price",[
-    {
-        min: 0,
-        max: 100,
-        minInclusive: true,         //default true
-        maxInclusive: false         //default false
-    }
-```
-For the above case, valid values would be 0 to 99 as by default `maxInclusive` here is false.
-
-**Example 2**
+**Example**
 
 ```
 searchClient.numericFacets("Price",[
@@ -183,7 +168,7 @@ searchClient.numericFacets("Price",[
     }
    ])
 ```
-**Example 2 would show up on your search result page as:**
+For the above case, valid ranges would be:
 
 - Price Rs. 0 to 99 
 - Price Rs. 100 to 499
