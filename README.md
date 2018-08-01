@@ -60,7 +60,7 @@ To initiate, you will have to create a new search client which would require an 
 > Always use your search-only tokens to make search operations from public clients like browser or mobile apps. Do not use your admin tokens on public facing clients. 
 
 ```
-var searchClient = new SearchClient(<app-id>, <search-token>);
+var searchClient = new SearchClient(<app-id>, <search-token>)
 ```
 
 ### Configure Search Settings
@@ -116,27 +116,36 @@ searchClient.search(<text-query>, <collection-id>)
 }
 ```
 
-## Options
+## Methods
+
+##### Search
+
+`.search(...)` : Let's you execute search based on the defined text query and collection id.
+
+``` 
+searchClient.search(<text-query>, <collection-id>) 
+```
 
 ##### Search Fields
 
-`searchFields(...)` `[array, optional]` :  Search would be applied on the fields defined here. For instance, Name, Price, etc. The default behaviour is to search on all fields. 
+`.searchFields(...)` `[array, optional]` : Search would be applied on the fields defined here. For instance - Name, Price, Category can be made searchable fields. See example below:
 
 ```
-searchClient.searchFields(f1,f2,f3,...) 
+searchClient.searchFields(Name,Price,Category) 
 ```
+The default behaviour is to search on all fields. 
 
 ##### Text Facets
 
-`textFacets(...)` `[array, optional]` : Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…) and associated count of records for that facet value. The default behaviour is to not fetch any facet values. 
+`.textFacets(...)` `[array, optional]` : Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…) and associated count of records for that facet value. The default behaviour is to not fetch any facet values. 
 
 ```
-searchClient.textFacets(f1,f2,f3,...)
+searchClient.textFacets('color', 'size', 'brand')
 ```
 
 ##### Text Facet Filters
 
-`textFacetFilters(...)` `[String, array]` `[optional]` : Further refine your search results by defining specific values of a text facet. For instance, if you wish to show results for specific brands only (zara & tommy hilfiger) while applying the facet 'Brand' - use following syntax. 
+`.textFacetFilters(...)` `[optional]` : Further refine your search results by defining specific values of a text facet. For instance, if you wish to show results for specific brands only (zara & tommy hilfiger) while applying the facet 'Brand' - use following syntax. 
 
 The default behavior is to apply no filters.
 
@@ -146,7 +155,7 @@ searchClient.textFacetFilters('Brand',['zara','tommy hilfiger'])
 
 ##### Numeric Facets
 
-`numericFacets(...)` `[String, array of object]` `[optional]`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age). `numericFacets` let's you define the ranges you want to show to the end user along with count of records in that range. You can use the same to create a histogram slider for your front-end UI. 
+`.numericFacets(...)` `[optional]`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age). `.numericFacets` let's you define the ranges you want to show to the end user along with count of records in that range. You can use the same to create a histogram slider for your front-end UI. 
 
 See following example to understand how to define facet object, 
 
@@ -181,44 +190,48 @@ Here `min` & `max` denote minimum and maximum values respectively.
 
 ##### Numeric Facets Filters
 
-`numericFacetsFilters(...)` `[String, number, number]`  `[optional]` : let's you define a lower and an upper bound value for a numeric facet to fetch results lying within the range. 
+`.numericFacetsFilters(...)` `[optional]` : Let's you define a lower and an upper bound value for a numeric facet to fetch results lying within the range. 
 
 The default behavior is to apply no filter.
 
 ```
-.numericFacetsFilters(price, 20, 80)
+searchClient.numericFacetsFilters(price, 20, 80)
 ```
 
 Here both lower-bound and upper-bound are inclusive. 
 
 ##### Filter
 
-`filter(...)` `[String, optional]` : Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by using following syntax. You can also combine multiple filter conditions by using keywords such as `AND`, `OR`, `NOT`. Feel free to group conditions using brackets `(...)`
+`.filter(...)` `[String, optional]` : Define criteria to further refine your search results. For instance, you can choose to remove Out of Stock" items from the search result page or show only the discounted products with 10% off or more by using following syntax. You can also combine multiple filter conditions by using keywords such as `AND`, `OR`, `NOT`. Feel free to group conditions using brackets `(...)`
 
 - Simple Filter
 ```
-.filter('discount >=10')
+searchClient.filter('discount >=10')
 ```
 
 - Combine Multiple Filter Conditions
 ```
-.filter('discount >= 10 AND quantity > 0')
+searchClient.filter('discount >= 10 AND quantity > 0')
 ```
 
 - Group Filters
 ```
-.filter('discount >=10 AND (quantity > 0 OR isDigitalGood = 0)')
+searchClient.filter ('discount >=10 AND (quantity > 0 OR isDigitalGood = 0)')
 ```
 
-##### Geo
+##### Geo (within circle)
 
-`geo(lat,lng, radius)` `[number, number, number]` `[optional]`:  `lat` is latitude, `lng` is longitude, `radius` is in meters. 
+`.geo(...)` `[optional]` : Geo Search is a way to refine search results by distance around a given `lat, lng` co-ordinates. The function is defined as - `searchClient.geo(lat,lng, radius)`, where `lat` is latitude, `lng` is longitude and `radius` is the maximum radius to search around the position (in meters).
 
-Geo Search is a way to refine search results by distance around a given `lat, lng` co-ordinates or to filter results inside a polygonal area (see example below). For the former case, closer the record to the `lat,lng` provided, higher is it's probability to show up in the search results. 
+The distance is Closer the record to the `lat,lng` provided, higher is it's probability to show up in the search results. If no `radius` is provided, results will not be limited but still be sorted on basis of distance from provided `lat,lng`. The default behavior is to not apply any geo filter. 
 
-If no `radius` is provided, results will not be limited but still be sorted on basis of distance from provided `lat,lng`.
+```
+searchClient.geo(36.77, -119.41, 10000)
+```
 
-The default behavior is to not apply any geo filter. 
+##### Geo (in a polygon)
+
+Another way is to filter results inside a polygonal area (see example below). This function accepts array of objects. 
 
 ```
 .geo([
@@ -235,49 +248,48 @@ The default behavior is to not apply any geo filter.
         lng:-106.31, 
     }
 ])
-
 ```
-
-The above function accepts array of objects. Filter will be applied on the locations covered inside the formed polygonal area. 
+Filter will be applied on the locations covered inside the formed polygonal area. 
 
 ##### Skip
 
-`skip(...)` `[number, optional]` : `[skip]` is used in pagination to bypass a specified number of search results and then return the remaining results. The default value set for `skip` is 0. 
+`.skip(...)` `[number, optional]` : `.skip(...)` is used in pagination to bypass a specified number of search results and then return the remaining results. The default value set for `skip` is 0. 
 
 ```
-.skip(<skip-value>)       //default 0
+searchClient.skip(0)    
 ```
 
 ##### Count
 
-`count(...)` `[number, optional]` : Defines how many results you want to display on the search result page. The default value set is 30. 
+`.count(...)` `[number, optional]` : Defines how many results you want to display on the search result page. The default value set is 30. 
 
 ```
-.count(<value>)           //default 30
+searchClient.count(30)         
 ```
 
 ##### Facet Count
 
-`facetCount(...)` `[number, optional]` : Defines the number of items you want to show for a defined facet. The default count value for facets is set as 100.
+`.facetCount(...)` `[number, optional]` : Defines the number of items you want to show for a defined facet. The default count value for facets is set as 100.
 
 ```
-.facetCount(<value>)      //default 100
+searchClient.facetCount(100)  
 ```
 
 ##### Sort
 
-`sort(...)` `[array, optional]` : It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
+`.sort(...)` `[array, optional]` : It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
 
 ```
-.sort(f1,f2,f3,...)
+searchClient.sort('-Price')
 ```
+The above function can be used to sort search results by price in descending order.
 
 ##### Typo Tolerance
 
-`typoTolerance(...)` `[number, optional]` : Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
+`.typoTolerance(...)` `[number, optional]` : Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
 
 ```
-.typoTolerance(<value>)    //default 1
+searchClient.typoTolerance(1)
 ```
 
 ## Getting Help
