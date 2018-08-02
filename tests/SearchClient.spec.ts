@@ -1,5 +1,5 @@
 import {suite, test, timeout} from "mocha-typescript";
-import SearchClient from "../src/SearchClient";
+import * as SearchClient from "../lib/index.umd";
 import {expect} from "chai";
 
 @suite("SearchClientSpec", timeout(100000))
@@ -9,6 +9,8 @@ class SearchClientSpec {
     let searchToken: string = process.env["searchToken"] as string;
     let appId: string = process.env["appId"] as string;
     let collectionId: string = process.env["collectionId"] as string;
+
+    console.log(SearchClient);
 
     let searchClient = new SearchClient(appId, searchToken)
       .searchFields("id")

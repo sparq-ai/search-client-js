@@ -16,27 +16,15 @@ let baseCfg = {
         declaration: false,
       }
     }]
-  }
-};
-
-let nodeCfg = Object.assign({}, baseCfg, {
-  output: {
-    path: path.resolve(__dirname, 'lib'),
-    filename: 'index.common.js',
-    libraryTarget: 'commonjs',
-    library: 'SearchClient',
-    umdNamedDefine: true
-  }
-});
-
-let browserCfg = Object.assign({}, baseCfg, {
+  },
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.min.js',
-    libraryTarget: 'var',
+    libraryTarget: 'umd',
     library: 'SearchClient',
-    umdNamedDefine: true
+    umdNamedDefine: true,
+    globalObject: `typeof self !== 'undefined' ? self : this`
   }
-});
+};
 
-module.exports = [browserCfg, nodeCfg];
+module.exports = baseCfg;

@@ -130,7 +130,7 @@ export = class SearchClient {
 
     let requestPayload = JSON.stringify(this.searchRequest.toJson());
 
-    return this.restClient.post("/", requestPayload, {
+    return this.restClient.post("", requestPayload, {
       method: "POST",
       headers: {
         "content-type": "application/json",

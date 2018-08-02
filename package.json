@@ -1,6 +1,6 @@
 {
   "name": "@searchtap/search-client",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "keywords": [
     "search",
     "search as you type",
@@ -8,8 +8,7 @@
     "search client"
   ],
   "description": "Search Client is a lightweight search-only client that handles only the searches at SearchTap platform",
-  "main": "lib/index.common.js",
-  "browser": "lib/index.min.js",
+  "main": "lib/index.min.js",
   "typings": "lib/SearchClient.d.ts",
   "scripts": {
     "build": "rm -rf lib && NODE_ENV=production ./node_modules/.bin/webpack --mode=production && tsc --emitDeclarationOnly",
