@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require("webpack");
+
 let baseCfg = {
   entry: "./src/SearchClient.ts",
   resolve: {
@@ -22,7 +22,7 @@ let baseCfg = {
 let nodeCfg = Object.assign({}, baseCfg, {
   output: {
     path: path.resolve(__dirname, 'lib'),
-    filename: 'index.node.js',
+    filename: 'index.common.js',
     libraryTarget: 'commonjs',
     library: 'SearchClient',
     umdNamedDefine: true
@@ -32,10 +32,11 @@ let nodeCfg = Object.assign({}, baseCfg, {
 let browserCfg = Object.assign({}, baseCfg, {
   output: {
     path: path.resolve(__dirname, 'lib'),
-    filename: 'index.browser.js',
+    filename: 'index.min.js',
     libraryTarget: 'var',
     library: 'SearchClient',
     umdNamedDefine: true
   }
 });
+
 module.exports = [browserCfg, nodeCfg];
