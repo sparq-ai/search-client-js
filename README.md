@@ -74,7 +74,7 @@ You can configure the default search settings by using various functions before 
         ...
 ```
 
-Look at the complete definitions for all options available [here](#options)
+Look at the complete definitions for all methods available [here](#options)
 
 ### Search
 
@@ -85,6 +85,8 @@ searchClient.search(<text-query>, <collection-id>)
 ```
 
 ### Search Results 
+
+On a successful completion of search query, data in the following structure is returned. The textFacets and numericFacets might be empty depending if they were requested in the original query. 
 
 ```
 {
@@ -120,7 +122,7 @@ searchClient.search(<text-query>, <collection-id>)
 
 ##### Search
 
-`.search(...)` : Let's you execute search based on the defined text query and collection id.
+`.search(...)` : Let's you execute a free text query for a given collection id.
 
 ``` 
 searchClient.search(<text-query>, <collection-id>) 
@@ -137,7 +139,11 @@ The default behaviour is to search on all fields.
 
 ##### Text Facets
 
-`.textFacets(...)` `[array, optional]` : Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…) and associated count of records for that facet value. The default behaviour is to not fetch any facet values. 
+`.textFacets(...)` `[array, optional]` : Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…) and associated count of records for that facet value. 
+
+> You would be require to configure facets on the SearchTap dashboard for the collection before fetching its data. If not configured, you would receive an error. 
+
+The default behaviour is to not fetch any facet values. 
 
 ```
 searchClient.textFacets('color', 'size', 'brand')
@@ -156,6 +162,10 @@ searchClient.textFacetFilters('Brand',['zara','tommy hilfiger'])
 ##### Numeric Facets
 
 `.numericFacets(...)` `[optional]`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age). `.numericFacets` let's you define the ranges you want to show to the end user along with count of records in that range. You can use the same to create a histogram slider for your front-end UI. 
+
+> You would be require to configure facets on the SearchTap dashboard for the collection before fetching its data. If not configured, you would receive an error. 
+
+The default behavior is to not fetch any numeric facet value. 
 
 See following example to understand how to define facet object, 
 
@@ -223,7 +233,9 @@ searchClient.filter ('discount >=10 AND (quantity > 0 OR isDigitalGood = 0)')
 
 `.geo(...)` `[optional]` : Geo Search is a way to refine search results by distance around a given `lat, lng` co-ordinates. The function is defined as - `searchClient.geo(lat,lng, radius)`, where `lat` is latitude, `lng` is longitude and `radius` is the maximum radius to search around the position (in meters).
 
-The distance is Closer the record to the `lat,lng` provided, higher is it's probability to show up in the search results. If no `radius` is provided, results will not be limited but still be sorted on basis of distance from provided `lat,lng`. The default behavior is to not apply any geo filter. 
+When provided `.geo(...)` filter, results are sorted distance wise from the provided `lat,lng`, upto the `radius` provided. All results beyond the provided `radius` are removed from the results. If no `radius` is provided, results will not be limited but still be sorted on basis of distance from provided `lat,lng`. 
+
+The default behavior is to not apply any geo filter. 
 
 ```
 searchClient.geo(36.77, -119.41, 10000)
@@ -231,7 +243,7 @@ searchClient.geo(36.77, -119.41, 10000)
 
 ##### Geo (in a polygon)
 
-Another way is to filter results inside a polygonal area (see example below). This function accepts array of objects. 
+`.geo(...)` also allows you to search within a provided polygonal area. You can define a polygon by providing multiple geo co-ordinates and results within those are returned. 
 
 ```
 .geo([
@@ -249,7 +261,6 @@ Another way is to filter results inside a polygonal area (see example below). Th
     }
 ])
 ```
-Filter will be applied on the locations covered inside the formed polygonal area. 
 
 ##### Skip
 
@@ -261,7 +272,7 @@ searchClient.skip(0)
 
 ##### Count
 
-`.count(...)` `[number, optional]` : Defines how many results you want to display on the search result page. The default value set is 30. 
+`.count(...)` `[number, optional]` : Defines how many results you want to fetch for the given search query. The default value is 30. 
 
 ```
 searchClient.count(30)         
@@ -269,7 +280,7 @@ searchClient.count(30)
 
 ##### Facet Count
 
-`.facetCount(...)` `[number, optional]` : Defines the number of items you want to show for a defined facet. The default count value for facets is set as 100.
+`.facetCount(...)` `[number, optional]` : Defines the number of items you want to fetch for a defined facet. The default count value for facets is 100.
 
 ```
 searchClient.facetCount(100)  
