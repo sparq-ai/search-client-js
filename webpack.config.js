@@ -1,14 +1,7 @@
 const path = require('path');
 const webpack = require("webpack");
-module.exports = {
+let baseCfg = {
   entry: "./src/SearchClient.ts",
-  output: {
-    path: path.resolve(__dirname, 'lib'),
-    filename: 'index.js',
-    libraryTarget: 'var',
-    library: 'SearchClient',
-    umdNamedDefine: true
-  },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
   },
@@ -25,3 +18,24 @@ module.exports = {
     }]
   }
 };
+
+let nodeCfg = Object.assign({}, baseCfg, {
+  output: {
+    path: path.resolve(__dirname, 'lib'),
+    filename: 'index.node.js',
+    libraryTarget: 'commonjs',
+    library: 'SearchClient',
+    umdNamedDefine: true
+  }
+});
+
+let browserCfg = Object.assign({}, baseCfg, {
+  output: {
+    path: path.resolve(__dirname, 'lib'),
+    filename: 'index.browser.js',
+    libraryTarget: 'var',
+    library: 'SearchClient',
+    umdNamedDefine: true
+  }
+});
+module.exports = [browserCfg, nodeCfg];
