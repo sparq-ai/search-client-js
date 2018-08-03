@@ -133,7 +133,7 @@ export = class SearchClient {
     this.searchRequest.collection = collectionId;
 
     let requestPayload = JSON.stringify(this.searchRequest.toJson());
-
+    this.searchRequest = new SearchRequest();
     return this.restClient.post("", requestPayload, {
       method: "POST",
       headers: {
