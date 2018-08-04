@@ -44,9 +44,11 @@ export = class SearchClient {
   numericFacets(name: string, ranges: Range[]): this {
     if (this.searchRequest.numericFacets[name] == undefined)
       this.searchRequest.numericFacets[name] = [];
+
     this.searchRequest.numericFacets[name] = Array.from(new Set(this.searchRequest.numericFacets[name].concat(ranges.map(
       function (value, index, array): string {
         let r = "";
+
         //preferring minInclusive to be true
         //preferring maxInclusive to be false
         if (value.minInclusive != undefined && value.minInclusive == false)

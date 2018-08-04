@@ -39,8 +39,8 @@ class SearchClientSpec {
     let searchClient = new SearchClient("", "")
       .searchFields("sf1", "sf2", "sf2")
       .searchFields("sf3", "sf4", "sf3")
-      .fields("f1","f2","f3")
-      .fields("f3","f4","f3")
+      .fields("f1", "f2", "f3")
+      .fields("f3", "f4", "f3")
       .textFacets("tf1", "tf2", "tf1")
       .textFacets("tf1", "tf2", "tf1")
       .textFacets("tf3", "tf2", "tf2")
@@ -55,10 +55,10 @@ class SearchClientSpec {
       .numericFacetFilters("nf1", 0, 100)
       .numericFacetFilters("nf2", 200, 300)
       .numericFacetFilters("nf2", 200, 300)
-      .sort("sortF1","sortF2","sortF2")
-      .sort("sortF3","sortF4","sortF3")
-      .geo({lat:0,lng:0,radius:0})
-      .geo([{lat:0,lng:0},{lat:0,lng:0},{lat:0,lng:1}]);
+      .sort("sortF1", "sortF2", "sortF2")
+      .sort("sortF3", "sortF4", "sortF3")
+      .geo({lat: 0, lng: 0, radius: 0})
+      .geo([{lat: 0, lng: 0}, {lat: 0, lng: 0}, {lat: 0, lng: 1}]);
 
     expect(searchClient.searchRequest.searchFields.length).equal(2);
     expect(searchClient.searchRequest.searchFields.findIndex(x => x == "sf3") < 0).equal(false);
@@ -105,10 +105,10 @@ class SearchClientSpec {
     expect(searchClient.searchRequest.sort.findIndex(x => x == "sortF4") < 0).equal(false);
 
     expect(searchClient.searchRequest.geo.around).equal(undefined);
-    expect(searchClient.searchRequest.geo.polygon!=undefined).equal(true);
-    expect(searchClient.searchRequest.geo.polygon?searchClient.searchRequest.geo.polygon.length:0).equal(2);
-    expect(searchClient.searchRequest.geo.polygon?searchClient.searchRequest.geo.polygon.findIndex(x => x.lat==0 && x.lng==0) < 0:true).equal(false);
-    expect(searchClient.searchRequest.geo.polygon?searchClient.searchRequest.geo.polygon.findIndex(x => x.lat==0 && x.lng==1) < 0:true).equal(false);
+    expect(searchClient.searchRequest.geo.polygon != undefined).equal(true);
+    expect(searchClient.searchRequest.geo.polygon ? searchClient.searchRequest.geo.polygon.length : 0).equal(2);
+    expect(searchClient.searchRequest.geo.polygon ? searchClient.searchRequest.geo.polygon.findIndex(x => x.lat == 0 && x.lng == 0) < 0 : true).equal(false);
+    expect(searchClient.searchRequest.geo.polygon ? searchClient.searchRequest.geo.polygon.findIndex(x => x.lat == 0 && x.lng == 1) < 0 : true).equal(false);
 
   }
 
