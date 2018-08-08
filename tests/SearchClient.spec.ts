@@ -2,8 +2,22 @@ import {suite, test, timeout} from "mocha-typescript";
 import SearchClient from "../src/SearchClient";
 import {expect} from "chai";
 
+const nock = require('nock');
+
 @suite("SearchClientSpec", timeout(100000))
 class SearchClientSpec {
+  async before() {
+    let appId: string = process.env["appId"] as string;
+    nock(`https://${appId}-fast.searchtap.net/v2`)
+      .post('')
+      .reply(function (uri, requestBody) {
+        return [
+          200,
+          {'query': requestBody, "results": [], "totalHits": 0}
+        ];
+      });
+  }
+
   @test("Get Search Results")
   async testFetchSearchResults() {
     let searchToken: string = process.env["searchToken"] as string;
@@ -29,9 +43,9 @@ class SearchClientSpec {
       .skip(30)
       .count(40)
       .typoTolerance(2);
-
     let result = await searchClient.search("name", collectionId);
-    expect(<any[]>(<any>result)["results"].length).greaterThan(0)
+    expect(result["query"] !== undefined).equal(true);
+    expect(result["results"] !== undefined).equal(true)
   }
 
   @test("Test Search Request")
