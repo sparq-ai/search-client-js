@@ -7,8 +7,7 @@ const nock = require('nock');
 @suite("SearchClientSpec", timeout(100000))
 class SearchClientSpec {
   async before() {
-    let appId: string = process.env["appId"] as string;
-    nock(`https://${appId}-fast.searchtap.net/v2`)
+    nock(`https://sampleAppId-fast.searchtap.net/v2`)
       .post('')
       .reply(function (uri, requestBody) {
         return [
@@ -20,11 +19,7 @@ class SearchClientSpec {
 
   @test("Get Search Results")
   async testFetchSearchResults() {
-    let searchToken: string = process.env["searchToken"] as string;
-    let appId: string = process.env["appId"] as string;
-    let collectionId: string = process.env["collectionId"] as string;
-
-    let searchClient = new SearchClient(appId, searchToken)
+    let searchClient = new SearchClient("sampleAppId", "sampleSearchToken")
       .searchFields("id")
       .searchFields("name")
       .fields("id")
@@ -43,7 +38,7 @@ class SearchClientSpec {
       .skip(30)
       .count(40)
       .typoTolerance(2);
-    let result = await searchClient.search("name", collectionId);
+    let result = await searchClient.search("name", "sampleCollectionId");
     expect(result["query"] !== undefined).equal(true);
     expect(result["results"] !== undefined).equal(true)
   }
