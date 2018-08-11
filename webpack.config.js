@@ -5,7 +5,7 @@ let baseCfg = {
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   plugins: [],
   module: {
     rules: [{
@@ -23,7 +23,7 @@ let baseCfg = {
     libraryTarget: "umd",
     library: "SearchClient",
     umdNamedDefine: true,
-    globalObject: `typeof self !== "undefined" ? self : this`
+    globalObject: "typeof self !== \"undefined\" ? self : this"
   }
 };
 
