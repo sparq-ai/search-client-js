@@ -1,8 +1,13 @@
 # SearchTap Search Client
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b512582f14d4d87a5fa69adc9aa96cb)](https://www.codacy.com/project/searchtap/search-client-js/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=searchtap/search-client-js&amp;utm_campaign=Badge_Grade_Dashboard) [![Build Status](https://travis-ci.org/searchtap/search-client-js.svg?branch=master)](https://travis-ci.org/searchtap/search-client-js)
+
 [SearchTap](https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software that delivers relevant results instantly. 
 
 Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client `@searchtap/client`. The Search Client library makes it easy to send requests and retrieve search results from the server for you.
+
+
+
 
 ## Table of Contents
 
