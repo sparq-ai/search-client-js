@@ -120,5 +120,5 @@ class SearchClientSpec {
     expect(searchClient.searchRequest.geo.polygon ? searchClient.searchRequest.geo.polygon.findIndex(x => x.lat == 0 && x.lng == 1) < 0 : true).equal(false);
 
   }
-  
+
 }
