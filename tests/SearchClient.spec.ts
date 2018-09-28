@@ -7,14 +7,14 @@ const nock = require('nock');
 @suite("SearchClientSpec", timeout(100000))
 class SearchClientSpec {
   async before() {
-    // nock(`https://sampleAppId-fast.searchtap.net/v2`)
-    //   .post('')
-    //   .reply(function (uri, requestBody) {
-    //     return [
-    //       200,
-    //       {'query': requestBody, "results": [], "totalHits": 0}
-    //     ];
-    //   });
+    nock(`https://sampleAppId-fast.searchtap.net/v2`)
+      .post('')
+      .reply(function (uri, requestBody) {
+        return [
+          200,
+          {'query': requestBody, "results": [], "totalHits": 0}
+        ];
+      });
   }
 
   @test("Get Search Results")
@@ -121,15 +121,6 @@ class SearchClientSpec {
 
   }
 
-@test("custom")
-  async customTest(){
-    var searchRequies= await new SearchClient("","c92908ab-6b52-4175-970f-1188a9a665c1")
-      .groupBy("groupField1")
-      .groupCount(10)
-      .skip(0).count(80)
-      .search("","30825a18-4754-41d1-b3e1-b0c2d11c5dc6")
 
-    var h=""
-  }
 
 }
