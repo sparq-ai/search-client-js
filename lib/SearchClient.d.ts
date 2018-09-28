@@ -17,9 +17,11 @@ declare const _default: {
         sort(...sortFields: string[]): any;
         typoTolerance(typo: number): any;
         geo(val: GeoAround | Point[]): any;
+        groupBy(groupBy: string): any;
         skip(skip: number): any;
         count(count: number): any;
         facetCount(facetCount: number): any;
+        groupCount(groupCount: number): any;
         clear(): void;
         search(query: string, collectionId: string): Promise<{}>;
     };

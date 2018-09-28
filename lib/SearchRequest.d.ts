@@ -12,6 +12,7 @@ export declare class SearchRequest {
     collection: string;
     facetCount: number;
     groupBy?: string;
+    groupCount: number;
     typoTolerance: number;
     textFacetFilters: ObjOfStringArray;
     numericFacets: ObjOfStringArray;
