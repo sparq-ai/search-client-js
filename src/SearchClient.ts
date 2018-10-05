@@ -107,6 +107,11 @@ export = class SearchClient {
 
   }
 
+  groupBy(groupBy: string): this {
+    this.searchRequest.groupBy = groupBy;
+    return this;
+  }
+
   skip(skip: number): this {
     this.searchRequest.skip = skip;
     return this;
@@ -119,6 +124,11 @@ export = class SearchClient {
 
   facetCount(facetCount: number): this {
     this.searchRequest.facetCount = facetCount;
+    return this;
+  }
+
+  groupCount(groupCount: number): this {
+    this.searchRequest.groupCount = groupCount;
     return this;
   }
 

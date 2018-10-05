@@ -14,6 +14,7 @@ export class SearchRequest {
   collection: string = '';
   facetCount: number = 100;
   groupBy?: string;
+  groupCount: number = -1;
   typoTolerance: number = 1;
   textFacetFilters: ObjOfStringArray = {};
   numericFacets: ObjOfStringArray = {};
