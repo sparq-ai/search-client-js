@@ -41,6 +41,8 @@ Search Client is a lightweight search-only client that handles only the searches
 - [`count`](#count)
 - [`facetCount`](#facet-count)
 - [`sort`](#sort)
+- [`groupBy`](#group-by)
+- [`groupCount`](#group-count)
 - [`typoTolerance`](#typo-tolerance)
 
 ### 4. [Getting Help](#getting-help)
@@ -304,7 +306,7 @@ searchClient.sort('-Price')
 The above function can be used to sort search results by price in descending order.
 
 
-##### GroupBy
+##### Group By
 
 `.groupBy(...)` `[String, optional]` : It can be used to club results into a group where records of same data field are combined. For eg. if you group results on a field `brand`, all results of same brand will appear together, followed by next group. 
 
@@ -312,7 +314,7 @@ The above function can be used to sort search results by price in descending ord
 searchClient.groupBy('brand')
 ```
 
-##### GroupCount
+##### Group Count
 
 `.groupCount(...)` `[Number, optional]` : This defines the upper limit of records for a group. For eg. if groupCount value is set to 10, maximum of 10 results will be fetched in each group. 
 
