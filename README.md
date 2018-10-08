@@ -303,6 +303,24 @@ searchClient.sort('-Price')
 ```
 The above function can be used to sort search results by price in descending order.
 
+
+##### GroupBy
+
+`.groupBy(...)` `[String, optional]` : It can be used to club results into a group where records of same data field are combined. For eg. if you group results on a field `brand`, all results of same brand will appear together, followed by next group. 
+
+```
+searchClient.groupBy('brand')
+```
+
+##### GroupCount
+
+`.groupCount(...)` `[Number, optional]` : This defines the upper limit of records for a group. For eg. if groupCount value is set to 10, maximum of 10 results will be fetched in each group. 
+
+```
+searchClient.groupCount(10)
+```
+
+
 ##### Typo Tolerance
 
 `.typoTolerance(...)` `[number, optional]` : Results with typos can also be shown in search results. By default, search queries with only 1 typo will be fetched.
