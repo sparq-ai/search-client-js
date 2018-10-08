@@ -296,7 +296,7 @@ searchClient.facetCount(100)
 
 ##### Sort
 
-`.sort(...)` `[array, optional]` : It can be used to further sort the results. For example - Price low to high would display results starting from low price value to high.
+`.sort(...)` `[String, optional]` : It can be used to further sort the results. For example `-Price` low to high would display results starting from low price value to high.
 
 ```
 searchClient.sort('-Price')
