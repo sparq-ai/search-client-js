@@ -69,6 +69,7 @@ To initiate, you will have to create a new search client which would require an 
 > Always use your search-only tokens to make search operations from public clients like browser or mobile apps. Do not use your admin tokens on public facing clients. 
 
 ```
+import SearchClient from "@searchtap/search-client";
 var searchClient = new SearchClient(<app-id>, <search-token>)
 ```
 
