@@ -1,21 +1,64 @@
 import {GeoAround, Point, Range} from "./TypeDefs";
 import {SearchRequest} from "./SearchRequest";
 import Axios, {AxiosInstance, AxiosResponse} from "axios";
+import * as cookies from "browser-cookies";
+import {getServers} from "./Util";
+import {TrackingClient} from "./tracking/TrackingClient";
 
 export = class SearchClient {
   public searchRequest: SearchRequest;
 
   private restClient: AxiosInstance;
+  private static BrowserCookieKey = "uId";
+  private trackingClient: TrackingClient;
+  private isTrackingEnabled: Boolean = false;
 
   constructor(public appId: string, public searchToken: string) {
     this.searchRequest = new SearchRequest();
-
-    let baseUrl = `https://${appId}-fast.searchtap.net/v2`;
-
     this.restClient = Axios.create({
-      baseURL: baseUrl
-    })
+      baseURL: getServers(this.appId).search,
+      headers: {
+        "authorization": "Bearer " + this.searchToken,
+        "content-type": "application/json"
+      }
+    });
+    this.trackingClient = new TrackingClient(this.searchToken);
+    //ignore promise
+    this.getUserId();
+
   }
+
+
+  private async getUserId(collectionId?: string) {
+
+    if (typeof window !== 'undefined') {
+      this.trackingClient.globalUserId = cookies.get(SearchClient.BrowserCookieKey);
+      if (!this.trackingClient.globalUserId) {
+        if (collectionId) {
+          let userIdBody = await this.trackingClient.requestUserId(collectionId);
+          if (userIdBody) {
+            this.saveCookieToBrowser(userIdBody.data.userId);
+            this.trackingClient.globalUserId = userIdBody.data.userId;
+          }
+        }
+
+      } else {
+        //re-initialize cookie
+        this.saveCookieToBrowser(this.trackingClient.globalUserId);
+      }
+    } else {
+      this.trackingClient.globalUserId = require('os').hostname();
+    }
+  }
+
+  private saveCookieToBrowser(userId: string) {
+    //todo set domain and secure
+    cookies.set(SearchClient.BrowserCookieKey, userId, {
+      path: "/",
+      expires: 367 * 2
+    });
+  }
+
 
   searchFields(...searchFields: string[]): this {
     this.searchRequest.searchFields = [];
@@ -96,8 +139,7 @@ export = class SearchClient {
     if (!Array.isArray(val)) {
       this.searchRequest.geo.around = val;
       this.searchRequest.geo.polygon = undefined
-    }
-    else {
+    } else {
       this.searchRequest.geo.polygon = val.filter((value, index) => {
         return val.findIndex(x => x.lat == value.lat && x.lng == value.lng) == index
       });
@@ -132,6 +174,21 @@ export = class SearchClient {
     return this;
   }
 
+  track(trackingEnabled: Boolean) {
+    this.isTrackingEnabled = trackingEnabled;
+    return this;
+  }
+
+  user(userId: string) {
+    this.trackingClient.customUserId = userId;
+    return this;
+  }
+
+  tqField(labelField: string) {
+    this.trackingClient.trackField = labelField;
+    return this;
+  }
+
 
   public clear(): void {
     this.searchRequest.textFacetFilters = {};
@@ -141,18 +198,23 @@ export = class SearchClient {
   }
 
   async search(query: string, collectionId: string): Promise<{}> {
+
+    if (!this.trackingClient.globalUserId && this.isTrackingEnabled) {
+      // noinspection JSIgnoredPromiseFromCall
+      this.getUserId(collectionId);
+    }
     this.searchRequest.query = query;
     this.searchRequest.collection = collectionId;
-
+    this.trackingClient.collectionId = collectionId;
     let requestPayload = JSON.stringify(this.searchRequest.toJson());
     this.searchRequest = new SearchRequest();
     return this.restClient.post("", requestPayload, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "authorization": "Bearer " + this.searchToken
-      }
-    }).then(function (value: AxiosResponse<any>) {
+      method: "POST"
+    }).then(async (value: AxiosResponse<any>) => {
+      //dont await on it
+      // noinspection JSIgnoredPromiseFromCall
+      if (this.isTrackingEnabled)
+        this.trackingClient.tq(value.data);
       return value.data;
     }, function (reason: any) {
       console.log("Failed to get Results for query: " + query + " Status: " + reason["response"]["status"]);
