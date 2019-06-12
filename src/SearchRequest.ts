@@ -3,6 +3,7 @@ import {GeoType, ObjOfStringArray} from "./TypeDefs";
 export class SearchRequest {
 
   query: string = '';
+  isTrackingEnabled: boolean = false;
   fields: string[] = ["*"];
   textFacets: string[] = [];
   highlightFields: string[] = [];

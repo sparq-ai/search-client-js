@@ -6,12 +6,16 @@ import {getServers} from "./Util";
 import {TrackingClient} from "./tracking/TrackingClient";
 
 export = class SearchClient {
+  //its state is not maintained for multiple searches
   public searchRequest: SearchRequest;
 
   private restClient: AxiosInstance;
   private static BrowserCookieKey = "uId";
+
+  //todo:ask naveen sir whether there state be maintained or not for same searchClient but multiple searches
+  //currently state is maintained
   private trackingClient: TrackingClient;
-  private isTrackingEnabled: Boolean = false;
+  private isTrackingEnabled: boolean = false;
 
   constructor(public appId: string, public searchToken: string) {
     this.searchRequest = new SearchRequest();
@@ -174,7 +178,7 @@ export = class SearchClient {
     return this;
   }
 
-  track(trackingEnabled: Boolean) {
+  track(trackingEnabled: boolean) {
     this.isTrackingEnabled = trackingEnabled;
     return this;
   }
@@ -206,6 +210,10 @@ export = class SearchClient {
     this.searchRequest.query = query;
     this.searchRequest.collection = collectionId;
     this.trackingClient.collectionId = collectionId;
+
+    //get state from tracking fields
+    this.searchRequest.isTrackingEnabled=this.isTrackingEnabled;
+
     let requestPayload = JSON.stringify(this.searchRequest.toJson());
     this.searchRequest = new SearchRequest();
     return this.restClient.post("", requestPayload, {
@@ -213,7 +221,7 @@ export = class SearchClient {
     }).then(async (value: AxiosResponse<any>) => {
       //dont await on it
       // noinspection JSIgnoredPromiseFromCall
-      if (this.isTrackingEnabled)
+      if (this.searchRequest.isTrackingEnabled)
         this.trackingClient.tq(value.data);
       return value.data;
     }, function (reason: any) {
