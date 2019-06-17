@@ -12,7 +12,8 @@
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "downlevelIteration": true
   },
   "exclude": [
     "./tests/**/*.ts"

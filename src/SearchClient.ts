@@ -19,25 +19,25 @@ export = class SearchClient {
 
   searchFields(...searchFields: string[]): this {
     this.searchRequest.searchFields = [];
-    this.searchRequest.searchFields = Array.from(new Set(this.searchRequest.searchFields.concat(searchFields)));
+    this.searchRequest.searchFields = [...new Set(this.searchRequest.searchFields.concat(searchFields))];
     return this;
   }
 
   fields(...fields: string[]): this {
     this.searchRequest.fields = [];
-    this.searchRequest.fields = Array.from(new Set(this.searchRequest.fields.concat(fields)));
+    this.searchRequest.fields = [...new Set(this.searchRequest.fields.concat(fields))];
     return this;
   }
 
   textFacets(...textFacets: string[]): this {
-    this.searchRequest.textFacets = Array.from(new Set(this.searchRequest.textFacets.concat(textFacets)));
+    this.searchRequest.textFacets = [...new Set(this.searchRequest.textFacets.concat(textFacets))];
     return this;
   }
 
   textFacetFilters(name: string, filters: string[]): this {
     if (this.searchRequest.textFacetFilters[name] == undefined)
       this.searchRequest.textFacetFilters[name] = [];
-    this.searchRequest.textFacetFilters[name] = Array.from(new Set(this.searchRequest.textFacetFilters[name].concat(filters)));
+    this.searchRequest.textFacetFilters[name] = [...new Set(this.searchRequest.textFacetFilters[name].concat(filters))];
     return this;
   }
 
@@ -45,7 +45,7 @@ export = class SearchClient {
     if (this.searchRequest.numericFacets[name] == undefined)
       this.searchRequest.numericFacets[name] = [];
 
-    this.searchRequest.numericFacets[name] = Array.from(new Set(this.searchRequest.numericFacets[name].concat(ranges.map(
+    this.searchRequest.numericFacets[name] = [...new Set(this.searchRequest.numericFacets[name].concat(ranges.map(
       function (value, index, array): string {
         let r = "";
 
@@ -64,7 +64,7 @@ export = class SearchClient {
           r = r + ")";
         return r;
       }
-    ))));
+    )))];
 
     return this;
   }
@@ -72,7 +72,7 @@ export = class SearchClient {
   numericFacetFilters(name: string, min: number, max: number): this {
     if (this.searchRequest.numericFacetFilters[name] == undefined)
       this.searchRequest.numericFacetFilters[name] = [];
-    this.searchRequest.numericFacetFilters[name] = Array.from(new Set(this.searchRequest.numericFacetFilters[name].concat(`[${min},${max}]`)));
+    this.searchRequest.numericFacetFilters[name] = [...new Set(this.searchRequest.numericFacetFilters[name].concat(`[${min},${max}]`))];
     return this;
   }
 
@@ -83,7 +83,7 @@ export = class SearchClient {
 
   sort(...sortFields: string[]): this {
     this.searchRequest.sort = [];
-    this.searchRequest.sort = Array.from(new Set(this.searchRequest.sort.concat(sortFields)));
+    this.searchRequest.sort = [...new Set(this.searchRequest.sort.concat(sortFields))];
     return this;
   }
 
@@ -96,8 +96,7 @@ export = class SearchClient {
     if (!Array.isArray(val)) {
       this.searchRequest.geo.around = val;
       this.searchRequest.geo.polygon = undefined
-    }
-    else {
+    } else {
       this.searchRequest.geo.polygon = val.filter((value, index) => {
         return val.findIndex(x => x.lat == value.lat && x.lng == value.lng) == index
       });
