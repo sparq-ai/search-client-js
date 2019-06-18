@@ -221,7 +221,7 @@ export = class SearchClient {
     }).then(async (value: AxiosResponse<any>) => {
       //dont await on it
       // noinspection JSIgnoredPromiseFromCall
-      if (this.searchRequest.isTrackingEnabled)
+      if (this.isTrackingEnabled)
         this.trackingClient.tq(value.data);
       return value.data;
     }, function (reason: any) {
