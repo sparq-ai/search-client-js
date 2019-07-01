@@ -10,6 +10,7 @@ export class TrackingClient {
   private trackingRestClient!: AxiosInstance;
   trackField: string = "id";
   collectionId!: string;
+  private ipv4Address!: string;
 
   constructor(public searchToken: string) {
     this.trackingRestClient = Axios.create({
@@ -19,6 +20,7 @@ export class TrackingClient {
         "content-type": "application/json"
       }
     });
+    this.getIpAddress();
   }
 
   async requestUserId(collectionId: string): Promise<UserIdResponse | null> {
@@ -43,7 +45,9 @@ export class TrackingClient {
           label: result[this.trackField]
         }
       }),
-      meta: {}
+      meta: {
+        ip: this.ipv4Address
+      }
     };
     let trackingResponse = await this.trackingRestClient.post("query", trackingData, {
       headers: {
@@ -52,6 +56,16 @@ export class TrackingClient {
     }).catch(x => x.response);
     if (trackingResponse.status !== 200)
       console.log(`Failed to send tracking data for Query:${uniqueId}.Received Response: ${trackingResponse.status}`);
+  }
+
+
+  private async getIpAddress() {
+    let ipAddressResponse = await Axios.get("https://api.ipify.org?format=json")
+      .catch(e => e.response);
+    if (ipAddressResponse.status === 200) {
+      this.ipv4Address = ipAddressResponse.data.ip;
+    } else
+      this.ipv4Address = "0.0.0.0";
   }
 
 }
