@@ -67,7 +67,9 @@ class SearchClientSpec {
       .sort("sortF1", "sortF2", "sortF2")
       .sort("sortF3", "sortF4", "sortF3")
       .geo({lat: 0, lng: 0, radius: 0})
-      .geo([{lat: 0, lng: 0}, {lat: 0, lng: 0}, {lat: 0, lng: 1}]);
+      .geo([{lat: 0, lng: 0}, {lat: 0, lng: 0}, {lat: 0, lng: 1}])
+      .highlightFields("hf1", "hf2")
+      .highlightFields("hf3", "hf4");
 
     expect(searchClient.searchRequest.searchFields.length).equal(2);
     expect(searchClient.searchRequest.searchFields.findIndex(x => x == "sf3") < 0).equal(false);
@@ -119,6 +121,11 @@ class SearchClientSpec {
     expect(searchClient.searchRequest.geo.polygon ? searchClient.searchRequest.geo.polygon.findIndex(x => x.lat == 0 && x.lng == 0) < 0 : true).equal(false);
     expect(searchClient.searchRequest.geo.polygon ? searchClient.searchRequest.geo.polygon.findIndex(x => x.lat == 0 && x.lng == 1) < 0 : true).equal(false);
 
+    expect(searchClient.searchRequest.highlightFields.length).equal(4);
+    expect(searchClient.searchRequest.highlightFields.findIndex(x => x == "hf1") < 0).equal(false);
+    expect(searchClient.searchRequest.highlightFields.findIndex(x => x == "hf2") < 0).equal(false);
+    expect(searchClient.searchRequest.highlightFields.findIndex(x => x == "hf3") < 0).equal(false);
+    expect(searchClient.searchRequest.highlightFields.findIndex(x => x == "hf4") < 0).equal(false);
   }
 
 }
