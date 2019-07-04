@@ -9,6 +9,7 @@ declare const _default: {
         searchToken: string;
         searchFields(...searchFields: string[]): any;
         fields(...fields: string[]): any;
+        highlightFields(...highlightFields: string[]): any;
         textFacets(...textFacets: string[]): any;
         textFacetFilters(name: string, filters: string[]): any;
         numericFacets(name: string, ranges: Range[]): any;

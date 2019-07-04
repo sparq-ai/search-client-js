@@ -29,6 +29,11 @@ export = class SearchClient {
     return this;
   }
 
+  highlightFields(...highlightFields: string[]): this {
+    this.searchRequest.highlightFields = [...new Set(this.searchRequest.highlightFields.concat(highlightFields))];
+    return this;
+  }
+
   textFacets(...textFacets: string[]): this {
     this.searchRequest.textFacets = [...new Set(this.searchRequest.textFacets.concat(textFacets))];
     return this;
