@@ -24,6 +24,7 @@ declare const _default: {
         facetCount(facetCount: number): any;
         groupCount(groupCount: number): any;
         clear(): void;
+        facetSearch(query: string, facetName: string, facetQuery: string, count: number, collectionId: string): Promise<{}>;
         search(query: string, collectionId: string): Promise<{}>;
     };
 };

@@ -17,6 +17,12 @@ export declare class SearchRequest {
     textFacetFilters: ObjOfStringArray;
     numericFacets: ObjOfStringArray;
     numericFacetFilters: ObjOfStringArray;
+    textFacetQuery: TextFacetQuery | null;
     geo: GeoType;
     toJson(): {};
+}
+export declare class TextFacetQuery {
+    query: string;
+    count: number;
+    constructor(query: string, count: number);
 }
