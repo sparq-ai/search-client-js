@@ -19,10 +19,21 @@ export class SearchRequest {
   textFacetFilters: ObjOfStringArray = {};
   numericFacets: ObjOfStringArray = {};
   numericFacetFilters: ObjOfStringArray = {};
+  textFacetQuery: TextFacetQuery | null = null;
 
   geo: GeoType = {};
 
   toJson(): {} {
     return Object.assign({}, this);
+  }
+}
+
+export class TextFacetQuery {
+  query: string ;
+  count: number;
+
+  constructor(query: string, count: number) {
+    this.query = query;
+    this.count = count || 100;
   }
 }

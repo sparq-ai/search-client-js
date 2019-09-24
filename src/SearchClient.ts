@@ -1,5 +1,5 @@
 import {GeoAround, Point, Range} from "./TypeDefs";
-import {SearchRequest} from "./SearchRequest";
+import {SearchRequest, TextFacetQuery} from "./SearchRequest";
 import Axios, {AxiosInstance, AxiosResponse} from "axios";
 
 export = class SearchClient {
@@ -144,6 +144,28 @@ export = class SearchClient {
     this.searchRequest.numericFacetFilters = {};
   }
 
+  async facetSearch(query: string, facetName: string, facetQuery: string, count: number, collectionId: string): Promise<{}> {
+    this.searchRequest.textFacetQuery = new TextFacetQuery(facetQuery, count);
+    this.searchRequest.query = query;
+    this.searchRequest.collection = collectionId;
+
+    let requestPayload = JSON.stringify(this.searchRequest.toJson());
+    this.searchRequest = new SearchRequest();
+    return this.restClient.post(`/collections/${collectionId}/facet/${facetName}/query`, requestPayload, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "authorization": "Bearer " + this.searchToken
+      }
+    }).then(function (value: AxiosResponse<any>) {
+      return value.data;
+    }, function (reason: any) {
+      console.log("Failed to get Facet query results for query: " + query + " Status: " + (reason["response"] ? reason["response"]["status"] : undefined));
+      return null;
+    });
+  }
+
+
   async search(query: string, collectionId: string): Promise<{}> {
     this.searchRequest.query = query;
     this.searchRequest.collection = collectionId;
@@ -159,7 +181,7 @@ export = class SearchClient {
     }).then(function (value: AxiosResponse<any>) {
       return value.data;
     }, function (reason: any) {
-      console.log("Failed to get Results for query: " + query + " Status: " + reason["response"]["status"]);
+      console.log("Failed to get Results for query: " + query + " Status: " + (reason["response"] ? reason["response"]["status"] : undefined));
       return null;
     });
   }
