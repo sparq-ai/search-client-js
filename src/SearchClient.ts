@@ -180,9 +180,6 @@ export = class SearchClient {
       }
     }).then(function (value: AxiosResponse<any>) {
       return value.data;
-    }, function (reason: any) {
-      console.log("Failed to get Results for query: " + query + " Status: " + (reason["response"] ? reason["response"]["status"] : undefined));
-      return null;
     });
   }
 }
