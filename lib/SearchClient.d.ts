@@ -5,6 +5,7 @@ declare const _default: {
     new (appId: string, searchToken: string): {
         searchRequest: SearchRequest;
         restClient: AxiosInstance;
+        readonly baseUrl: string;
         appId: string;
         searchToken: string;
         searchFields(...searchFields: string[]): any;
@@ -25,6 +26,7 @@ declare const _default: {
         groupCount(groupCount: number): any;
         clear(): void;
         facetSearch(query: string, facetName: string, facetQuery: string, count: number, collectionId: string): Promise<{}>;
+        getJsonpUrl(requestPayload: string, collectionId: string): string;
         search(query: string, collectionId: string): Promise<{}>;
     };
 };

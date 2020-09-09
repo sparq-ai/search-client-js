@@ -19,7 +19,8 @@
  "repository": "https://github.com/searchtap/search-client-js",
  "license": "MIT",
  "dependencies": {
-  "axios": "^0.18.0"
+  "axios": "^0.18.0",
+  "promisify-jsonp": "^1.1.1"
  },
  "nyc": {
   "extension": [
