@@ -2,12 +2,15 @@ import { GeoAround, Point, Range } from "./TypeDefs";
 import { SearchRequest } from "./SearchRequest";
 import { AxiosInstance } from "axios";
 declare const _default: {
-    new (appId: string, searchToken: string): {
+    new (appId: string, searchToken: string, proxyUrl?: string | undefined): {
         searchRequest: SearchRequest;
         restClient: AxiosInstance;
         readonly baseUrl: string;
+        isJsonp: boolean | undefined;
         appId: string;
         searchToken: string;
+        proxyUrl?: string | undefined;
+        useJsonp(value: boolean): any;
         searchFields(...searchFields: string[]): any;
         fields(...fields: string[]): any;
         highlightFields(...highlightFields: string[]): any;
@@ -27,6 +30,8 @@ declare const _default: {
         clear(): void;
         facetSearch(query: string, facetName: string, facetQuery: string, count: number, collectionId: string): Promise<{}>;
         getJsonpUrl(requestPayload: string, collectionId: string): string;
+        getResultByJsonp(requestPayload: string): Promise<{}>;
+        checkCors(): Promise<{}>;
         search(query: string, collectionId: string): Promise<{}>;
     };
 };
