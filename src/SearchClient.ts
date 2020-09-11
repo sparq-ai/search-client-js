@@ -11,12 +11,9 @@ export = class SearchClient {
 
     private isJsonp: boolean | undefined;
 
-    constructor(public appId: string, public searchToken: string, public proxyUrl?: string) {
+    constructor(public appId: string, public searchToken: string) {
         this.searchRequest = new SearchRequest();
-        if (proxyUrl)
-            this.baseUrl = proxyUrl;
-        else
-            this.baseUrl = `https://${appId}-fast.searchtap.net/v2`;
+        this.baseUrl = `https://${appId}-fast.searchtap.net/v2`;
 
         this.restClient = Axios.create({
             baseURL: this.baseUrl
