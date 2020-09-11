@@ -1,185 +1,240 @@
 import {GeoAround, Point, Range} from "./TypeDefs";
 import {SearchRequest, TextFacetQuery} from "./SearchRequest";
 import Axios, {AxiosInstance, AxiosResponse} from "axios";
+import pjsonp from 'promisify-jsonp';
 
 export = class SearchClient {
-  public searchRequest: SearchRequest;
+    public searchRequest: SearchRequest;
 
-  private restClient: AxiosInstance;
+    private restClient: AxiosInstance;
+    private readonly baseUrl: string;
 
-  constructor(public appId: string, public searchToken: string) {
-    this.searchRequest = new SearchRequest();
+    private isJsonp: boolean | undefined;
 
-    let baseUrl = `https://${appId}-fast.searchtap.net/v2`;
+    constructor(public appId: string, public searchToken: string) {
+        this.searchRequest = new SearchRequest();
+        this.baseUrl = `https://${appId}-fast.searchtap.net/v2`;
 
-    this.restClient = Axios.create({
-      baseURL: baseUrl
-    })
-  }
-
-  searchFields(...searchFields: string[]): this {
-    this.searchRequest.searchFields = [];
-    this.searchRequest.searchFields = [...new Set(this.searchRequest.searchFields.concat(searchFields))];
-    return this;
-  }
-
-  fields(...fields: string[]): this {
-    this.searchRequest.fields = [];
-    this.searchRequest.fields = [...new Set(this.searchRequest.fields.concat(fields))];
-    return this;
-  }
-
-  highlightFields(...highlightFields: string[]): this {
-    this.searchRequest.highlightFields = [...new Set(this.searchRequest.highlightFields.concat(highlightFields))];
-    return this;
-  }
-
-  textFacets(...textFacets: string[]): this {
-    this.searchRequest.textFacets = [...new Set(this.searchRequest.textFacets.concat(textFacets))];
-    return this;
-  }
-
-  textFacetFilters(name: string, filters: string[]): this {
-    if (this.searchRequest.textFacetFilters[name] == undefined)
-      this.searchRequest.textFacetFilters[name] = [];
-    this.searchRequest.textFacetFilters[name] = [...new Set(this.searchRequest.textFacetFilters[name].concat(filters))];
-    return this;
-  }
-
-  numericFacets(name: string, ranges: Range[]): this {
-    if (this.searchRequest.numericFacets[name] == undefined)
-      this.searchRequest.numericFacets[name] = [];
-
-    this.searchRequest.numericFacets[name] = [...new Set(this.searchRequest.numericFacets[name].concat(ranges.map(
-      function (value, index, array): string {
-        let r = "";
-
-        //preferring minInclusive to be true
-        //preferring maxInclusive to be false
-        if (value.minInclusive != undefined && value.minInclusive == false)
-          r = r + "(";
-        else
-          r = r + "[";
-        r = r + value.min + ",";
-
-        r = r + value.max;
-        if (value.maxInclusive != undefined && value.maxInclusive == true)
-          r = r + "]";
-        else
-          r = r + ")";
-        return r;
-      }
-    )))];
-
-    return this;
-  }
-
-  numericFacetFilters(name: string, min: number, max: number): this {
-    if (this.searchRequest.numericFacetFilters[name] == undefined)
-      this.searchRequest.numericFacetFilters[name] = [];
-    this.searchRequest.numericFacetFilters[name] = [...new Set(this.searchRequest.numericFacetFilters[name].concat(`[${min},${max}]`))];
-    return this;
-  }
-
-  filter(filter: string): this {
-    this.searchRequest.filter = filter;
-    return this;
-  }
-
-  sort(...sortFields: string[]): this {
-    this.searchRequest.sort = [];
-    this.searchRequest.sort = [...new Set(this.searchRequest.sort.concat(sortFields))];
-    return this;
-  }
-
-  typoTolerance(typo: number): this {
-    this.searchRequest.typoTolerance = typo;
-    return this;
-  }
-
-  geo(val: GeoAround | Point[]): this {
-    if (!Array.isArray(val)) {
-      this.searchRequest.geo.around = val;
-      this.searchRequest.geo.polygon = undefined
-    } else {
-      this.searchRequest.geo.polygon = val.filter((value, index) => {
-        return val.findIndex(x => x.lat == value.lat && x.lng == value.lng) == index
-      });
-      this.searchRequest.geo.around = undefined
+        this.restClient = Axios.create({
+            baseURL: this.baseUrl
+        })
     }
-    return this;
 
-  }
+    useJsonp(value: boolean) {
+        this.isJsonp = value;
+        return this;
+    }
 
-  groupBy(groupBy: string): this {
-    this.searchRequest.groupBy = groupBy;
-    return this;
-  }
+    searchFields(...searchFields: string[]): this {
+        this.searchRequest.searchFields = [];
+        this.searchRequest.searchFields = [...new Set(this.searchRequest.searchFields.concat(searchFields))];
+        return this;
+    }
 
-  skip(skip: number): this {
-    this.searchRequest.skip = skip;
-    return this;
-  }
+    fields(...fields: string[]): this {
+        this.searchRequest.fields = [];
+        this.searchRequest.fields = [...new Set(this.searchRequest.fields.concat(fields))];
+        return this;
+    }
 
-  count(count: number): this {
-    this.searchRequest.count = count;
-    return this;
-  }
+    highlightFields(...highlightFields: string[]): this {
+        this.searchRequest.highlightFields = [...new Set(this.searchRequest.highlightFields.concat(highlightFields))];
+        return this;
+    }
 
-  facetCount(facetCount: number): this {
-    this.searchRequest.facetCount = facetCount;
-    return this;
-  }
+    textFacets(...textFacets: string[]): this {
+        this.searchRequest.textFacets = [...new Set(this.searchRequest.textFacets.concat(textFacets))];
+        return this;
+    }
 
-  groupCount(groupCount: number): this {
-    this.searchRequest.groupCount = groupCount;
-    return this;
-  }
+    textFacetFilters(name: string, filters: string[]): this {
+        if (this.searchRequest.textFacetFilters[name] == undefined)
+            this.searchRequest.textFacetFilters[name] = [];
+        this.searchRequest.textFacetFilters[name] = [...new Set(this.searchRequest.textFacetFilters[name].concat(filters))];
+        return this;
+    }
+
+    numericFacets(name: string, ranges: Range[]): this {
+        if (this.searchRequest.numericFacets[name] == undefined)
+            this.searchRequest.numericFacets[name] = [];
+
+        this.searchRequest.numericFacets[name] = [...new Set(this.searchRequest.numericFacets[name].concat(ranges.map(
+            function (value, index, array): string {
+                let r = "";
+
+                //preferring minInclusive to be true
+                //preferring maxInclusive to be false
+                if (value.minInclusive != undefined && value.minInclusive == false)
+                    r = r + "(";
+                else
+                    r = r + "[";
+                r = r + value.min + ",";
+
+                r = r + value.max;
+                if (value.maxInclusive != undefined && value.maxInclusive == true)
+                    r = r + "]";
+                else
+                    r = r + ")";
+                return r;
+            }
+        )))];
+
+        return this;
+    }
+
+    numericFacetFilters(name: string, min: number, max: number): this {
+        if (this.searchRequest.numericFacetFilters[name] == undefined)
+            this.searchRequest.numericFacetFilters[name] = [];
+        this.searchRequest.numericFacetFilters[name] = [...new Set(this.searchRequest.numericFacetFilters[name].concat(`[${min},${max}]`))];
+        return this;
+    }
+
+    filter(filter: string): this {
+        this.searchRequest.filter = filter;
+        return this;
+    }
+
+    sort(...sortFields: string[]): this {
+        this.searchRequest.sort = [];
+        this.searchRequest.sort = [...new Set(this.searchRequest.sort.concat(sortFields))];
+        return this;
+    }
+
+    typoTolerance(typo: number): this {
+        this.searchRequest.typoTolerance = typo;
+        return this;
+    }
+
+    geo(val: GeoAround | Point[]): this {
+        if (!Array.isArray(val)) {
+            this.searchRequest.geo.around = val;
+            this.searchRequest.geo.polygon = undefined
+        } else {
+            this.searchRequest.geo.polygon = val.filter((value, index) => {
+                return val.findIndex(x => x.lat == value.lat && x.lng == value.lng) == index
+            });
+            this.searchRequest.geo.around = undefined
+        }
+        return this;
+
+    }
+
+    groupBy(groupBy: string): this {
+        this.searchRequest.groupBy = groupBy;
+        return this;
+    }
+
+    skip(skip: number): this {
+        this.searchRequest.skip = skip;
+        return this;
+    }
+
+    count(count: number): this {
+        this.searchRequest.count = count;
+        return this;
+    }
+
+    facetCount(facetCount: number): this {
+        this.searchRequest.facetCount = facetCount;
+        return this;
+    }
+
+    groupCount(groupCount: number): this {
+        this.searchRequest.groupCount = groupCount;
+        return this;
+    }
 
 
-  public clear(): void {
-    this.searchRequest.textFacetFilters = {};
-    this.searchRequest.textFacets = [];
-    this.searchRequest.numericFacets = {};
-    this.searchRequest.numericFacetFilters = {};
-  }
+    public clear(): void {
+        this.searchRequest.textFacetFilters = {};
+        this.searchRequest.textFacets = [];
+        this.searchRequest.numericFacets = {};
+        this.searchRequest.numericFacetFilters = {};
+    }
 
-  async facetSearch(query: string, facetName: string, facetQuery: string, count: number, collectionId: string): Promise<{}> {
-    this.searchRequest.textFacetQuery = new TextFacetQuery(facetQuery, count);
-    this.searchRequest.query = query;
-    this.searchRequest.collection = collectionId;
+    async facetSearch(query: string, facetName: string, facetQuery: string, count: number, collectionId: string): Promise<{}> {
+        this.searchRequest.textFacetQuery = new TextFacetQuery(facetQuery, count);
+        this.searchRequest.query = query;
+        this.searchRequest.collection = collectionId;
 
-    let requestPayload = JSON.stringify(this.searchRequest.toJson());
-    this.searchRequest = new SearchRequest();
-    return this.restClient.post(`/collections/${collectionId}/facet/${facetName}/query`, requestPayload, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "authorization": "Bearer " + this.searchToken
-      }
-    }).then(function (value: AxiosResponse<any>) {
-      return value.data;
-    }, function (reason: any) {
-      console.log("Failed to get Facet query results for query: " + query + " Status: " + (reason["response"] ? reason["response"]["status"] : undefined));
-      return null;
-    });
-  }
+        let requestPayload = JSON.stringify(this.searchRequest.toJson());
+        this.searchRequest = new SearchRequest();
+        return this.restClient.post(`/collections/${collectionId}/facet/${facetName}/query`, requestPayload, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "authorization": "Bearer " + this.searchToken
+            }
+        }).then(function (value: AxiosResponse<any>) {
+            return value.data;
+        }, function (reason: any) {
+            console.log("Failed to get Facet query results for query: " + query + " Status: " + (reason["response"] ? reason["response"]["status"] : undefined));
+            return null;
+        });
+    }
 
+    getJsonpUrl(requestPayload: string, collectionId: string) {
+        return `${this.baseUrl}?q=${requestPayload}&auth=${this.searchToken}`
+    }
 
-  async search(query: string, collectionId: string): Promise<{}> {
-    this.searchRequest.query = query;
-    this.searchRequest.collection = collectionId;
+    private async getResultByJsonp(requestPayload: string) {
+        return pjsonp(this.getJsonpUrl(requestPayload, this.searchRequest.collection), {
+            callbackNamePrefix: "__st_"
+        })
+            .then(x => {
+                return x;
+            });
 
-    let requestPayload = JSON.stringify(this.searchRequest.toJson());
-    this.searchRequest = new SearchRequest();
-    return this.restClient.post("", requestPayload, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "authorization": "Bearer " + this.searchToken
-      }
-    }).then(function (value: AxiosResponse<any>) {
-      return value.data;
-    });
-  }
+    }
+
+    async checkCors() {
+        return new Promise((res) => {
+            let request = new XMLHttpRequest();
+            if (request.withCredentials !== undefined) {
+                //Detect blocking for CORS by VPNs
+                request.open("OPTIONS", this.baseUrl)
+                request.onload = function () {
+                    if (request.status === 200 || request.status === 204)
+                        return res(true);
+                    else
+                        return res(false);
+                };
+                request.onerror = function (e) {
+                    console.error("Error while checking for CORS")
+                    if (!navigator.onLine) {
+                        //internet not working, so we will just assume cors is supported
+                        return res(true);
+                    } else {
+                        //url is blocked
+                        return res(false);
+                    }
+                };
+                request.send()
+            }
+        });
+
+    }
+
+    async search(query: string, collectionId: string): Promise<{}> {
+        this.searchRequest.query = query;
+        this.searchRequest.collection = collectionId;
+        //check only for the first time, if isJsonp is not initialized
+        if (this.isJsonp === undefined)
+            this.isJsonp = !await this.checkCors();
+
+        let requestPayload: string = JSON.stringify(this.searchRequest.toJson());
+        this.searchRequest = new SearchRequest();
+        if (this.isJsonp)
+            return this.getResultByJsonp(requestPayload);
+
+        return this.restClient.post("", requestPayload, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "authorization": "Bearer " + this.searchToken
+            }
+        }).then(function (value: AxiosResponse<any>) {
+            return value.data;
+        });
+    }
 }

@@ -2637,6 +2637,11 @@ promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
 
+promisify-jsonp@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/promisify-jsonp/-/promisify-jsonp-1.1.1.tgz#f52c46ba440cf1a65e3f7dec309a99331a0ed1cd"
+  integrity sha512-fEa7kn+M+pX01rBS/mW9D+7chtGMMl085EEvmEg4oyZhWRNjfFtscPLeOPVnzxtIjdjFEL5sfGK66WEWkQ1wcA==
+
 propagate@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/propagate/-/propagate-1.0.0.tgz#00c2daeedda20e87e3782b344adba1cddd6ad709"
