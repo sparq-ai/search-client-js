@@ -2,14 +2,13 @@ import { GeoAround, Point, Range } from "./TypeDefs";
 import { SearchRequest } from "./SearchRequest";
 import { AxiosInstance } from "axios";
 declare const _default: {
-    new (appId: string, searchToken: string, proxyUrl?: string | undefined): {
+    new (appId: string, searchToken: string): {
         searchRequest: SearchRequest;
         restClient: AxiosInstance;
         readonly baseUrl: string;
         isJsonp: boolean | undefined;
         appId: string;
         searchToken: string;
-        proxyUrl?: string | undefined;
         useJsonp(value: boolean): any;
         searchFields(...searchFields: string[]): any;
         fields(...fields: string[]): any;
