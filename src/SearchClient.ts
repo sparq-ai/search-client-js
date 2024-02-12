@@ -2,7 +2,7 @@ import {GeoAround, Point, Range} from "./TypeDefs";
 import {SearchRequest, TextFacetQuery} from "./SearchRequest";
 import Axios, {AxiosInstance, AxiosResponse} from "axios";
 
-export = class SearchClient {
+export class SearchClient {
   public searchRequest: SearchRequest;
 
   private restClient: AxiosInstance;
