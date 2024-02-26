@@ -1,14 +1,14 @@
-# SearchTap Search Client
+# Sparq Search Client
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7b750a903df8454bbe0747aa74b23d54)](https://www.codacy.com/app/naveensky/search-client-js?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=searchtap/search-client-js&amp;utm_campaign=Badge_Grade)
-[![Build Status](https://travis-ci.org/searchtap/search-client-js.svg?branch=master)](https://travis-ci.org/searchtap/search-client-js) 
-[![npm](https://img.shields.io/npm/dm/@searchtap/search-client.svg)](https://www.npmjs.com/package/@searchtap/search-client) 
-[![NpmVersion](https://img.shields.io/npm/v/@searchtap/search-client.svg)](https://www.npmjs.com/package/@searchtap/search-client) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7b750a903df8454bbe0747aa74b23d54)](https://www.codacy.com/app/naveensky/search-client-js?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sparq/search-client-js&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/sparq/search-client-js.svg?branch=master)](https://travis-ci.org/sparq/search-client-js) 
+[![npm](https://img.shields.io/npm/dm/@sparq/search-client.svg)](https://www.npmjs.com/package/@sparq/search-client) 
+[![NpmVersion](https://img.shields.io/npm/v/@sparq/search-client.svg)](https://www.npmjs.com/package/@sparq/search-client) 
 
 
-[SearchTap](https://www.searchtap.io/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software that delivers relevant results instantly. 
+[Sparq](https://www.sparq.ai/) is a subscription based hosted search solution for websites (eCommerce, Media and Publishing), mobile applications and enterprise software that delivers relevant results instantly. 
 
-Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client `@searchtap/client`. The Search Client library makes it easy to send requests and retrieve search results from the server for you.
+Search Client is a lightweight search-only client that handles only the searches. It can be used in applications that require search access to their data and don't require the full blown client `@sparq/client`. The Search Client library makes it easy to send requests and retrieve search results from the server for you.
 
 
 ## Table of Contents
@@ -50,26 +50,26 @@ Search Client is a lightweight search-only client that handles only the searches
 
 ##### Browser
 
-`<script src='https://cdn.jsdelivr.net/npm/@searchtap/search-client/lib/index.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@sparq/search-client/lib/index.min.js'></script>`
 
 ##### NPM
 
-`npm install @searchtap/search-client --save`
+`npm install @sparq/search-client --save`
 
 ##### YARN
 
-`yarn add @searchtap/search-client`
+`yarn add @sparq/search-client`
 
 ## Quick Start
 
 ### Initialize the Search Client
 
-To initiate, you will have to create a new search client which would require an **Application ID** and a **Search Token**. You can find both on your [SearchTap account](https://dashboard.searchtap.io/login). 
+To initiate, you will have to create a new search client which would require an **Application ID** and a **Search Token**. You can find both on your [Sparq account](https://app.sparq.ai/login). 
 
 > Always use your search-only tokens to make search operations from public clients like browser or mobile apps. Do not use your admin tokens on public facing clients. 
 
 ```
-import SearchClient from "@searchtap/search-client";
+import SearchClient from "@sparq/search-client";
 var searchClient = new SearchClient(<app-id>, <search-token>)
 ```
 
@@ -88,7 +88,7 @@ Look at the complete definitions for all methods available [here](#options)
 
 ### Search
 
-You can initiate search by defining a text query and the collection id in the syntax below. Collection id can be found on your SearchTap account, every collection id is associated with a specific application.
+You can initiate search by defining a text query and the collection id in the syntax below. Collection id can be found on your Sparq account, every collection id is associated with a specific application.
 
 ```
 searchClient.search(<text-query>, <collection-id>)
@@ -151,7 +151,7 @@ The default behaviour is to search on all fields.
 
 `.textFacets(...)` `[array, optional]` : Text facets to be retrieved. For each of the retrieved facets (eg. color; size; brand), the response will contain a list of facet values (red, blue; small, large; zara…) and associated count of records for that facet value. 
 
-> You would be require to configure facets on the SearchTap dashboard for the collection before fetching its data. If not configured, you would receive an error. 
+> You would be require to configure facets on the Sparq dashboard for the collection before fetching its data. If not configured, you would receive an error. 
 
 The default behaviour is to not fetch any facet values. 
 
@@ -173,7 +173,7 @@ searchClient.textFacetFilters('Brand',['zara','tommy hilfiger'])
 
 `.numericFacets(...)` `[optional]`: Numeric facets as the name suggests, are facets with numeric values (eg. price, age). `.numericFacets` let's you define the ranges you want to show to the end user along with count of records in that range. You can use the same to create a histogram slider for your front-end UI. 
 
-> You would be require to configure facets on the SearchTap dashboard for the collection before fetching its data. If not configured, you would receive an error. 
+> You would be require to configure facets on the Sparq dashboard for the collection before fetching its data. If not configured, you would receive an error. 
 
 The default behavior is to not fetch any numeric facet value. 
 
@@ -333,4 +333,4 @@ searchClient.typoTolerance(1)
 
 ## Getting Help
 
-- **Need help?** Ask a question [here](https://github.com/searchtap/search-client-js/issues/new)
+- **Need help?** Ask a question [here](https://github.com/sparq-ai/search-client-js/issues/new)
