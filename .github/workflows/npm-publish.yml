@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - new-package
-      - SQ-7119
 
 jobs:
   build:
