@@ -10,7 +10,7 @@ export = class SearchClient {
   constructor(public appId: string, public searchToken: string) {
     this.searchRequest = new SearchRequest();
 
-    let baseUrl = `https://${appId}-fast.searchtap.net/v2`;
+    let baseUrl = `https://${appId}.fast.sparq.ai/v2`;
 
     this.restClient = Axios.create({
       baseURL: baseUrl
