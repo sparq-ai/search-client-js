@@ -8,7 +8,7 @@ const nock = require('nock');
 class SearchClientSpec {
   async before() {
 
-    nock(`https://sampleAppId-fast.searchtap.net/v2`)
+    nock(`https://sampleAppId.fast.sparq.ai/v2`)
       .post('')
       .reply(function (uri, requestBody) {
         return [
@@ -16,7 +16,7 @@ class SearchClientSpec {
           {'query': requestBody, "results": [], "totalHits": 0}
         ];
       })
-      .post('/collections/sampleCollectionId/facet/facetField1/query')
+      .post('/collections/sampleCollectionId/facet/fq1/query')
       .reply(function (uri, requestBody) {
         return [
           200,
