@@ -3,7 +3,7 @@ name: Publish to NPM
 on:
   push:
     branches:
-      - SQ-7306
+      - main
 
 jobs:
   publish:
@@ -31,4 +31,4 @@ jobs:
       - name: Publish to NPM
         run: npm publish --access=public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKENS }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
