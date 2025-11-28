@@ -1,13 +1,13 @@
 {
- "name": "@searchtap/search-client",
- "version": "2.0.0",
+ "name": "@sparq/search-client",
+ "version": "2.0.5",
  "keywords": [
   "search",
   "search as you type",
-  "searchtap",
+  "sparq",
   "search client"
  ],
- "description": "Search Client is a lightweight search-only client that handles searches at SearchTap platform.",
+ "description": "Search Client is a lightweight search-only client that handles searches at Sparq platform.",
  "main": "lib/index.min.js",
  "types": "lib/SearchClient.d.ts",
  "scripts": {
@@ -15,8 +15,8 @@
   "test": "NODE_ENV=test ./node_modules/mocha/bin/_mocha --full-trace --require ts-node/register --exit ./tests/**/*.spec.ts",
   "code-coverage": "NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/mocha/bin/_mocha --full-trace --require ts-node/register --exit ./tests/**/*.spec.ts && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage ./.nyc_output"
  },
- "author": "tech@searchtap.io",
- "repository": "https://github.com/searchtap/search-client-js",
+ "author": "tech@sparq.ai",
+ "repository": "https://github.com/sparq-ai/search-client-js",
  "license": "MIT",
  "dependencies": {
   "axios": "^0.18.0"
