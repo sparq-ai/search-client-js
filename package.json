@@ -15,7 +15,7 @@
   "test": "NODE_ENV=test ./node_modules/mocha/bin/_mocha --full-trace --require ts-node/register --exit ./tests/**/*.spec.ts",
   "code-coverage": "NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/mocha/bin/_mocha --full-trace --require ts-node/register --exit ./tests/**/*.spec.ts && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage ./.nyc_output"
  },
- "author": "tech@searchtap.io",
+ "author": "tech@sparq.ai",
  "repository": "https://github.com/sparq-ai/search-client-js",
  "license": "MIT",
  "dependencies": {
